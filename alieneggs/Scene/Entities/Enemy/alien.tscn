@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://wxokwdu11m7g"]
+
+[ext_resource type="Script" path="res://Script/Entities/Enemy/AlienNode.gd" id="1_evcwo"]
+[ext_resource type="Script" path="res://Script/Entities/Enemy/Alien.gd" id="1_kbuoj"]
+[ext_resource type="AudioStream" uid="uid://c3l334l735c0f" path="res://Asset/Audio/verse_1_far.mp3" id="2_7owuv"]
+[ext_resource type="Texture2D" uid="uid://ca7xvntckroir" path="res://Asset/Entities/Enemy/skull.png" id="2_qpxpx"]
+[ext_resource type="AudioStream" uid="uid://bqcpoj8kjyg3f" path="res://Asset/Audio/verse_2_far.mp3" id="3_sobi8"]
+[ext_resource type="AudioStream" uid="uid://dp8u0qqf5yqge" path="res://Asset/Audio/verse_3_far.mp3" id="4_ldf65"]
+[ext_resource type="AudioStream" uid="uid://1yy6ky30yp2u" path="res://Asset/Audio/growl_far.mp3" id="5_usd4v"]
+[ext_resource type="AudioStream" uid="uid://dfgldyl48r3ic" path="res://Asset/Audio/growl_near.mp3" id="6_3m07v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m6i5k"]
+radius = 35.1141
+
+[node name="AlienNode" type="Node2D" groups=["enemy"]]
+script = ExtResource("1_evcwo")
+
+[node name="Verse1Far" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_7owuv")
+
+[node name="Verse2Far" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_sobi8")
+
+[node name="Verse3Far" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ldf65")
+
+[node name="GrowlFar" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_usd4v")
+
+[node name="GrowlNear" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_3m07v")
+volume_db = 10.0
+
+[node name="AlienBody" type="CharacterBody2D" parent="." groups=["enemy"]]
+motion_mode = 1
+wall_min_slide_angle = 0.0
+safe_margin = 0.001
+script = ExtResource("1_kbuoj")
+
+[node name="Sprite2D" type="Sprite2D" parent="AlienBody"]
+position = Vector2(-2, 0)
+scale = Vector2(3.23182, 3.23182)
+texture = ExtResource("2_qpxpx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AlienBody"]
+shape = SubResource("CircleShape2D_m6i5k")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="AlienBody"]
+
+[node name="Timer" type="Timer" parent="AlienBody"]
+wait_time = 0.5
+autostart = true
+
+[node name="NoiseTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="timeout" from="AlienBody/Timer" to="AlienBody" method="_on_timer_timeout"]
+[connection signal="timeout" from="NoiseTimer" to="." method="_on_noise_timer_timeout"]

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://4bttjwuvo0ml"]
+
+[ext_resource type="Script" path="res://Script/Entities/Egg/egg.gd" id="1_t0y3d"]
+[ext_resource type="Texture2D" uid="uid://qgyi7dcsm6ju" path="res://Asset/Entities/Egg/egg.png" id="2_8gc0g"]
+[ext_resource type="AudioStream" uid="uid://cxwbtva11aw7t" path="res://Asset/Audio/broken_egg.mp3" id="2_k1ay0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lh50r"]
+radius = 16.0
+height = 64.0
+
+[node name="EggNode" type="Node2D" groups=["egg"]]
+script = ExtResource("1_t0y3d")
+
+[node name="BrokenEgg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_k1ay0")
+
+[node name="Egg" type="Sprite2D" parent="." groups=["egg"]]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_8gc0g")
+
+[node name="Area2D" type="Area2D" parent="Egg"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Egg/Area2D"]
+shape = SubResource("CapsuleShape2D_lh50r")
+
+[connection signal="body_entered" from="Egg/Area2D" to="." method="_on_area_2d_body_entered"]

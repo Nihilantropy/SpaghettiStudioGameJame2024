@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgd0xvu3dtacq"]
+
+[ext_resource type="Script" path="res://Script/UI/NoiseLevel/NoiseLevel.gd" id="1_i6bvh"]
+
+[node name="NoiseLevel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.4, 1)
+script = ExtResource("1_i6bvh")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 10.0
+rotation = -1.5708
+value = 45.0
+show_percentage = false

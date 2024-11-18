@@ -1,0 +1,94 @@
+[gd_scene load_steps=8 format=3 uid="uid://bsshix608k1uw"]
+
+[ext_resource type="Texture2D" uid="uid://cce3m0jbnnn7b" path="res://Asset/UI/Terminal/single_frame_no_wites_2.1.1.png" id="1_2sbbb"]
+[ext_resource type="Script" path="res://Script/UI/Terminal/Terminal.gd" id="1_mlnq5"]
+[ext_resource type="Shader" path="res://Script/UI/shader/Terminal.gdshader" id="2_hbo3u"]
+[ext_resource type="Texture2D" uid="uid://dptu1yy3cew82" path="res://Asset/UI/Terminal/TerminalFrame.png" id="4_xje0e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4wwub"]
+shader = ExtResource("2_hbo3u")
+
+[sub_resource type="FontFile" id="FontFile_7p2cy"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[sub_resource type="FontFile" id="FontFile_ya7e8"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[node name="Terminal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mlnq5")
+
+[node name="Screen" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2sbbb")
+patch_margin_top = 100
+
+[node name="Messages" type="RichTextLabel" parent="Screen"]
+material = SubResource("ShaderMaterial_4wwub")
+layout_mode = 2
+offset_left = 22.0
+offset_top = 47.0
+offset_right = 1118.0
+offset_bottom = 147.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = SubResource("FontFile_7p2cy")
+theme_override_fonts/mono_font = SubResource("FontFile_ya7e8")
+theme_override_font_sizes/mono_font_size = 0
+bbcode_enabled = true
+scroll_following = true
+tab_size = 2
+
+[node name="Info" type="RichTextLabel" parent="Screen"]
+material = SubResource("ShaderMaterial_4wwub")
+layout_mode = 2
+offset_left = 22.0
+offset_top = 484.0
+offset_right = 1118.0
+offset_bottom = 588.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = SubResource("FontFile_7p2cy")
+theme_override_fonts/mono_font = SubResource("FontFile_ya7e8")
+theme_override_font_sizes/mono_font_size = 0
+bbcode_enabled = true
+scroll_following = true
+tab_size = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -109.0
+offset_top = -190.0
+offset_right = 114.0
+offset_bottom = 101.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xje0e")
+metadata/_edit_lock_ = true
