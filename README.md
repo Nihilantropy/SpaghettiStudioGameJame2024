@@ -28,3 +28,9 @@ Everything is designed to keep you focused, on edge, and constantly aware of the
 
 This is just the beginning of **Alien Eggs**, and we hope you enjoy playing it as much as we enjoyed making it.
 Good luck, and remember: **better an egg today than a chicken tomorrow**!
+
+This game was made by:
+Claudio Rea (https://github.com/Nihilantropy)
+Luigi Pennisi (https://github.com/Ruy41321)
+Matteo Camilli (https://github.com/ippatteo)
+Eugenio Caruso (https://github.com/ecaruso42)
