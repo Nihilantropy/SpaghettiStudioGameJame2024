@@ -2,8 +2,9 @@ extends Control
 
 var radarShader = null
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("Pause"):
+			
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Pause"):
 		if $MarginContainer/VBoxContainer/Resume.disabled == true || GlobalVariables.is_video_playing():
 			return
 		if !visible:
@@ -14,7 +15,7 @@ func _process(_delta: float) -> void:
 			hide()
 			get_tree().paused = 0
 			radarShader.show()
-			
+
 func _on_resume_pressed() -> void:
 	get_tree().paused = 0
 	radarShader.show()

@@ -2,7 +2,7 @@ extends Node
 
 var	eggs_number = 4
 
-var	battery_shots = 1
+var	battery_shots = 6
 
 var current_video: VideoStreamPlayer = null
 
@@ -13,4 +13,4 @@ func is_video_playing():
 
 func reset_globals():
 	eggs_number = 4
-	battery_shots = 1
+	battery_shots = 6
