@@ -41,8 +41,3 @@ func _on_noise_area_body_exited(body: Node2D) -> void:
 func _on_dead_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		player.root_node.handle_lose()
-
-signal egg_broke
-
-func _on_player_body_egg_broken() -> void:
-	emit_signal("egg_broke")

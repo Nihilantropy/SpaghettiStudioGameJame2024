@@ -98,7 +98,3 @@ func get_volume_percentage():
 func get_noise_area_increm():
 	return (750 * get_volume_percentage()) / 100
 	
-signal egg_broken
-
-func egg_destroyed() -> void:
-	emit_signal("egg_broken")

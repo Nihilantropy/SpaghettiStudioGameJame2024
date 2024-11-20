@@ -88,7 +88,6 @@ shape = SubResource("CircleShape2D_ol1k5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBody/DeadArea"]
 shape = SubResource("CircleShape2D_t3w08")
 
-[connection signal="egg_broken" from="PlayerBody" to="." method="_on_player_body_egg_broken"]
 [connection signal="body_entered" from="PlayerBody/SoundArea" to="." method="_on_sound_area_body_entered"]
 [connection signal="body_exited" from="PlayerBody/SoundArea" to="." method="_on_sound_area_body_exited"]
 [connection signal="body_entered" from="PlayerBody/RadarArea" to="." method="_on_radar_area_body_entered"]

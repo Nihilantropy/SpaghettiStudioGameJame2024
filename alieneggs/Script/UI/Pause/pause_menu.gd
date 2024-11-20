@@ -4,7 +4,7 @@ var radarShader = null
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Pause"):
-		if $MarginContainer/VBoxContainer/Resume.disabled == true:
+		if $MarginContainer/VBoxContainer/Resume.disabled == true || GlobalVariables.is_video_playing():
 			return
 		if !visible:
 			show()
@@ -23,6 +23,7 @@ func _on_resume_pressed() -> void:
 func _on_restart_pressed() -> void:
 	if get_tree().paused == true:
 		get_tree().paused = 0
+	GlobalVariables.reset_globals()
 	get_tree().reload_current_scene()
 
 func _on_back_pressed() -> void:

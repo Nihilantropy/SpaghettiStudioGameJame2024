@@ -1,22 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://btqu5jb37xgqb"]
+[gd_scene load_steps=2 format=3 uid="uid://btqu5jb37xgqb"]
 
 [ext_resource type="PackedScene" uid="uid://r30ppmyukpdp" path="res://Scene/UI/ring_wave/ring_wave.tscn" id="1_5602q"]
-[ext_resource type="Texture2D" uid="uid://botu04kb8jejd" path="res://Asset/UI/Radar/Radar.png" id="2_8en5m"]
 
 [node name="Radar" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -739.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Control" parent="." instance=ExtResource("1_5602q")]
 layout_mode = 1
-
-[node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("2_8en5m")
+offset_left = 35.0
+offset_top = -2.0
+offset_right = 35.0
+offset_bottom = -2.0

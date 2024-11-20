@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Script/UI/StartScreen/start_menu.gd" id="1_blb2q"]
 [ext_resource type="Shader" path="res://Script/UI/StartScreen/shader/Interface.gdshader" id="1_q8vp5"]
+[ext_resource type="PackedScene" uid="uid://db4x7trxrqqyw" path="res://Scene/Interaction/VideoManager/VideoManager.tscn" id="3_8rr7s"]
 [ext_resource type="AudioStream" uid="uid://dngautfcrywdq" path="res://Asset/Audio/Ambient_loop.mp3" id="3_vlnt5"]
-[ext_resource type="VideoStream" path="res://Asset/Video/video_intro.ogv" id="4_vnw6e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dxhhc"]
 shader = ExtResource("1_q8vp5")
@@ -33,14 +33,6 @@ material = SubResource("ShaderMaterial_dxhhc")
 layout_mode = 0
 offset_right = 1159.0
 offset_bottom = 657.0
-
-[node name="IntroVideo" type="VideoStreamPlayer" parent="."]
-layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1088.0
-scale = Vector2(0.6, 0.6)
-stream = ExtResource("4_vnw6e")
-volume_db = 10.0
 
 [node name="StartMenu" type="MarginContainer" parent="."]
 process_mode = 3
@@ -94,7 +86,9 @@ stream = ExtResource("3_vlnt5")
 autoplay = true
 parameters/looping = true
 
-[connection signal="finished" from="IntroVideo" to="StartMenu" method="_on_intro_video_finished"]
+[node name="VideoManager" parent="." instance=ExtResource("3_8rr7s")]
+layout_mode = 1
+
 [connection signal="pressed" from="StartMenu/MainMenu/Play" to="StartMenu" method="_on_play_pressed"]
 [connection signal="pressed" from="StartMenu/MainMenu/Quit" to="StartMenu" method="_on_quit_pressed"]
 [connection signal="pressed" from="StartMenu/PlayMenu/Level1" to="StartMenu" method="_on_level_1_pressed"]

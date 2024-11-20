@@ -15,7 +15,7 @@ func _ready() -> void:
 	# Show the current battery level texture
 	battery_texture[GlobalVariables.battery_shots].show()
 
-func _on_main_ui_battery_shot_used() -> void:
+func _on_game_battery_shot_used() -> void:
 	# Ensure the global variable exists and is valid
 	if GlobalVariables.battery_shots >= 0 and GlobalVariables.battery_shots < battery_texture.size():
 		# Hide all battery textures
@@ -27,7 +27,7 @@ func _on_main_ui_battery_shot_used() -> void:
 		push_error("Invalid battery level: ", GlobalVariables.battery_shots)
 
 
-func _on_main_ui_battery_recharge() -> void:
+func _on_game_battery_recharge() -> void:
 	# Ensure the global variable exists and is valid
 	if GlobalVariables.battery_shots < 7:
 		# Hide all battery textures
