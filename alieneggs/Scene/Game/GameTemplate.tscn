@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cw5vfmwtm82ef" path="res://Scene/Entities/Player/Player.tscn" id="4_cjvdw"]
 [ext_resource type="PackedScene" uid="uid://wxokwdu11m7g" path="res://Scene/Entities/Enemy/alien.tscn" id="5_awnan"]
 [ext_resource type="PackedScene" uid="uid://4bttjwuvo0ml" path="res://Scene/Entities/Egg/egg.tscn" id="6_5mlmt"]
-[ext_resource type="PackedScene" uid="uid://bbqbnh0v1wgrq" path="res://Scene/MainUI.tscn" id="6_78kbg"]
+[ext_resource type="PackedScene" uid="uid://bbqbnh0v1wgrq" path="res://Scene/UI/MainUI.tscn" id="6_78kbg"]
 [ext_resource type="AudioStream" uid="uid://byuxmh6hsp3k6" path="res://Asset/Audio/radarBoost.mp3" id="7_264eh"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1rjhw"]
