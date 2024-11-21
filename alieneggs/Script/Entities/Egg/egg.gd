@@ -9,9 +9,13 @@ var broken = false
 
 signal egg_broken
 
-func _ready() -> void:
-	egg_broken.connect($"../MainUi/HBoxContainer/Terminal".update_egg)
-
+func set_root(node):
+	root_node = node
+	connect_signal()
+	
+func connect_signal():
+	egg_broken.connect(root_node.main_ui.terminal.update_egg)
+	
 func get_broke():
 	broken = true
 	GlobalVariables.eggs_number -= 1

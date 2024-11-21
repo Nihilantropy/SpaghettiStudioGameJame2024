@@ -1,36 +1,57 @@
 extends Node2D
 
-@onready var player = $PlayerNode.get_player()
-@onready var main_ui = $MainUi
+var level
+var player_node
+var player
+var alien_node
+var eggs
+var map
 
-@onready var sprite_timer = $SpriteTimer
-@onready var wall_timer = $WallTimer
-@onready var eggs = [ $Egg, $Egg1, $Egg2, $Egg3 ]
-@onready var alien = $AlienNode
-@onready var walls = $Layer2
-@onready var battery_shot_sound = $BatteryShotSound
+var main_ui
+var sprite_timer
+var wall_timer
+var battery_shot_sound
 var	visibility_duration = 0.8  # Duration for which sprites stay visible
 
 var	battery_usable = true;
-var is_testing = true
+var is_testing = false
 
 signal battery_shot_used
 signal battery_not_usable
 signal battery_recharge
 signal battery_died
 
+func _init() -> void:
+	level = load(GlobalVariables.level).instantiate()
+
 func _ready() -> void:
-	alien.set_player($PlayerNode.get_player())
-	alien.set_eggs([$Egg, $Egg1, $Egg2, $Egg3])
-	alien.set_root(self)
-	alien.start()
+	$AmbientLoop.add_sibling(level) #done to add level before MainUi
+	setup_entities()
+	GlobalVariables.set_eggs_number(eggs.size())
+	main_ui.terminal.setup_terminal()
+	alien_node.set_player(player)
+	alien_node.set_eggs(eggs)
+	alien_node.set_root(self)
+	alien_node.start()
 	main_ui.show()
 	if is_testing:
 		main_ui.hide_ui()
 	else:
 		_on_wall_timer_timeout() #Hide All
-	$PlayerNode.set_enemy(alien.get_alien())
-	$PlayerNode.alien_node = alien
+	player_node.set_enemy(alien_node.get_alien())
+	player_node.set_alien_node(alien_node)
+	
+func setup_entities():
+	player_node = level.get_player_node()
+	player = player_node.get_player()
+	alien_node = level.get_alien_node()
+	eggs = level.get_egg_nodes()
+	map = level.get_map()
+
+	main_ui = $MainUi
+	sprite_timer = $SpriteTimer
+	wall_timer = $WallTimer
+	battery_shot_sound = $BatteryShotSound
 	
 func _process(_delta: float) -> void:
 	if player:
@@ -59,19 +80,19 @@ func start_wall_timer():
 	if not wall_timer:
 		push_error("WallTimer node not found!")
 		return
-	if not walls:
+	if not map:
 		push_error("Wall node not found!")
 		return
 	wall_timer.start()
-	walls.show()
-	alien.show()
+	map.show()
+	alien_node.show()
 	for egg in eggs:
 		if !egg.broken:
 			egg.show()
 	
 func _on_wall_timer_timeout() -> void:
-	walls.hide()
-	alien.hide()
+	map.hide()
+	alien_node.hide()
 	for egg in eggs:
 		if !egg.broken:
 			egg.hide()
@@ -87,7 +108,7 @@ func _on_sprite_timer_timeout() -> void:
 	if battery_usable == false || is_testing:
 		return
 	# Show all sprites (alien and eggs)
-	alien.show()
+	alien_node.show()
 	for egg in eggs:
 		if !egg.broken:
 			egg.show()
@@ -95,7 +116,7 @@ func _on_sprite_timer_timeout() -> void:
 	if battery_usable == false:
 		return
 	# Hide all sprites
-	alien.hide()
+	alien_node.hide()
 	for egg in eggs:
 		if !egg.broken:
 			egg.hide()

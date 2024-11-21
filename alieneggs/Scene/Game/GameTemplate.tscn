@@ -1,11 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://byibekw73sx8c"]
+[gd_scene load_steps=4 format=3 uid="uid://byibekw73sx8c"]
 
 [ext_resource type="Script" path="res://Script/Game/GameManager.gd" id="1_yfqfj"]
-[ext_resource type="PackedScene" uid="uid://wfqmk3olk2p4" path="res://Scene/Map/background.tscn" id="2_by8pu"]
-[ext_resource type="PackedScene" uid="uid://b4opvimmyttuf" path="res://Scene/Map/small_map.tscn" id="3_n1ekg"]
-[ext_resource type="PackedScene" uid="uid://cw5vfmwtm82ef" path="res://Scene/Entities/Player/Player.tscn" id="4_cjvdw"]
-[ext_resource type="PackedScene" uid="uid://wxokwdu11m7g" path="res://Scene/Entities/Enemy/alien.tscn" id="5_awnan"]
-[ext_resource type="PackedScene" uid="uid://4bttjwuvo0ml" path="res://Scene/Entities/Egg/egg.tscn" id="6_5mlmt"]
 [ext_resource type="PackedScene" uid="uid://bbqbnh0v1wgrq" path="res://Scene/UI/MainUI.tscn" id="6_78kbg"]
 [ext_resource type="AudioStream" uid="uid://byuxmh6hsp3k6" path="res://Asset/Audio/radarBoost.mp3" id="7_264eh"]
 
@@ -14,28 +9,6 @@ script = ExtResource("1_yfqfj")
 
 [node name="AmbientLoop" type="AudioStreamPlayer" parent="."]
 autoplay = true
-
-[node name="Background" parent="." instance=ExtResource("2_by8pu")]
-
-[node name="SmallMap" parent="." instance=ExtResource("3_n1ekg")]
-
-[node name="PlayerNode" parent="." instance=ExtResource("4_cjvdw")]
-position = Vector2(-193, 228)
-
-[node name="AlienNode" parent="." instance=ExtResource("5_awnan")]
-position = Vector2(875, 251)
-
-[node name="Egg" parent="." instance=ExtResource("6_5mlmt")]
-position = Vector2(35, 535)
-
-[node name="Egg1" parent="." instance=ExtResource("6_5mlmt")]
-position = Vector2(-744, 18)
-
-[node name="Egg2" parent="." instance=ExtResource("6_5mlmt")]
-position = Vector2(428, -519)
-
-[node name="Egg3" parent="." instance=ExtResource("6_5mlmt")]
-position = Vector2(-398, -388)
 
 [node name="MainUi" parent="." instance=ExtResource("6_78kbg")]
 visible = false
@@ -63,6 +36,3 @@ stream = ExtResource("7_264eh")
 [connection signal="timeout" from="SpriteTimer" to="." method="_on_sprite_timer_timeout"]
 [connection signal="timeout" from="WallTimer" to="." method="_on_wall_timer_timeout"]
 [connection signal="timeout" from="BatteryRechargeTimer" to="." method="_on_battery_recharge_timer_timeout"]
-
-[editable path="SmallMap"]
-[editable path="PlayerNode"]

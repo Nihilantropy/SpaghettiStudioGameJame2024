@@ -6,8 +6,7 @@ extends Control
 
 var font
 
-func _ready() -> void:
-
+func setup_terminal() -> void:
 	font = FontFile.new()
 	font.fixed_size = 14
 	font.font_data = load("res://Script/UI/Terminal/Font/Courier MonoThai Regular.ttf")

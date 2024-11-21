@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=4 uid="uid://wfqmk3olk2p4"]
 
-[ext_resource type="Texture2D" uid="uid://cxhovuy4nryg" path="res://Asset/Game/mapTiles.png" id="1_bwf4l"]
+[ext_resource type="Texture2D" uid="uid://c3fasypaidii5" path="res://Asset/Map/mapTiles.png" id="1_bwf4l"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1rjhw"]
 vertices = PackedVector2Array(10, 9.25, -11.25, 9.75, -11, -10.75, 10.25, -10.75)

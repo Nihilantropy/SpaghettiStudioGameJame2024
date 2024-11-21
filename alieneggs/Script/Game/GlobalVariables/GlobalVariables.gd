@@ -1,10 +1,18 @@
 extends Node
 
-var	eggs_number = 4
+var eggs_max_number
+
+var	eggs_number
 
 var	battery_shots = 6
 
 var current_video: VideoStreamPlayer = null
+
+var level = null
+
+func set_eggs_number(n):
+	eggs_max_number = n
+	eggs_number = eggs_max_number
 
 func is_video_playing():
 	if current_video && current_video.is_playing():
@@ -12,5 +20,5 @@ func is_video_playing():
 	return false
 
 func reset_globals():
-	eggs_number = 4
+	eggs_number = eggs_max_number
 	battery_shots = 6

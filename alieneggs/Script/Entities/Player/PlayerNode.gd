@@ -9,6 +9,9 @@ func get_player():
 	
 func set_enemy(body):
 	enemy = body
+	
+func set_alien_node(node):
+	alien_node = node
 
 func _on_sound_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
