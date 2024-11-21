@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dfgldyl48r3ic" path="res://Asset/Audio/growl_near.mp3" id="6_3m07v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m6i5k"]
-radius = 35.1141
+radius = 32.0156
 
 [node name="AlienNode" type="Node2D" groups=["enemy"]]
 script = ExtResource("1_evcwo")

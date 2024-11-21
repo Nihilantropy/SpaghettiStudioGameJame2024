@@ -7,15 +7,6 @@ var alien = null
 var root_node = null
 var broken = false
 
-signal egg_broken
-
-func set_root(node):
-	root_node = node
-	connect_signal()
-	
-func connect_signal():
-	egg_broken.connect(root_node.main_ui.terminal.update_egg)
-	
 func get_broke():
 	broken = true
 	GlobalVariables.eggs_number -= 1
@@ -23,11 +14,13 @@ func get_broke():
 	$BrokenEgg.play()
 	hide()
 
+
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if broken:
 		return
 	if body.is_in_group("enemy"):
 		alien.change_target(0)
 	if body.is_in_group("player"):
+		var player = body
 		get_broke()
-		egg_broken.emit()
+		player.egg_destroyed()

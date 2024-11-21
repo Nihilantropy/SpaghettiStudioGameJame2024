@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 
-const SLOW_SPEED = 40
-const NORMAL_SPEED = 70
-const MAX_SPEED = 500
+const SLOW_SPEED = 250
+const NORMAL_SPEED = 350
+const MAX_SPEED = 430
 
 var rng = RandomNumberGenerator.new()
 var speed = NORMAL_SPEED
@@ -44,7 +44,7 @@ func make_noise():
 	sound.play()
 
 func choose_new_egg():
-	egg = eggs[rng.randi_range(0, GlobalVariables.eggs_max_number - 1)]
+	egg = eggs[rng.randi_range(0, 3)]
 	
 func _on_timer_timeout() -> void:
 		makePath()

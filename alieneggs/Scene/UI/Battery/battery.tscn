@@ -18,12 +18,11 @@ script = ExtResource("1_7mrwy")
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0
-offset_left = -162.0
-offset_top = 149.0
-offset_right = -122.0
-offset_bottom = 189.0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="BatteryLevel0" type="TextureRect" parent="Control"]
+visible = false
 layout_mode = 0
 offset_right = 128.0
 offset_bottom = 128.0

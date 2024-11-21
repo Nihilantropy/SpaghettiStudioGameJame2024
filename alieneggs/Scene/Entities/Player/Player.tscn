@@ -10,19 +10,19 @@
 [ext_resource type="AudioStream" uid="uid://cbg4uv6u0bvoq" path="res://Asset/Audio/heartbeat.mp3" id="6_77nho"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lryba"]
-radius = 20.025
+radius = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pu30e"]
-radius = 2000.0
+radius = 1100.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pbwgq"]
-radius = 900.0
+radius = 600.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ol1k5"]
 radius = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t3w08"]
-radius = 37.1214
+radius = 13.0
 
 [node name="PlayerNode" type="Node2D"]
 script = ExtResource("1_mrmo3")
@@ -51,13 +51,14 @@ motion_mode = 1
 safe_margin = 0.001
 script = ExtResource("1_r6l3r")
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape" type="CollisionShape2D" parent="PlayerBody"]
 shape = SubResource("CircleShape2D_lryba")
 one_way_collision_margin = 0.0
 
 [node name="Sprite" type="Sprite2D" parent="PlayerBody"]
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.39, 0.39)
 texture = ExtResource("2_o5olh")
 
 [node name="Camera2D" type="Camera2D" parent="PlayerBody"]
@@ -87,6 +88,7 @@ shape = SubResource("CircleShape2D_ol1k5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBody/DeadArea"]
 shape = SubResource("CircleShape2D_t3w08")
 
+[connection signal="egg_broken" from="PlayerBody" to="." method="_on_player_body_egg_broken"]
 [connection signal="body_entered" from="PlayerBody/SoundArea" to="." method="_on_sound_area_body_entered"]
 [connection signal="body_exited" from="PlayerBody/SoundArea" to="." method="_on_sound_area_body_exited"]
 [connection signal="body_entered" from="PlayerBody/RadarArea" to="." method="_on_radar_area_body_entered"]

@@ -24,7 +24,7 @@ func set_root(node):
 	root_node = node
 	player.root_node = node
 	for egg in eggs:
-		egg.set_root(node)
+		egg.root_node = node
 	
 func start():
 	$AlienBody.start()
