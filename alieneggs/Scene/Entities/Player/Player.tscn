@@ -13,10 +13,10 @@
 radius = 20.025
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pu30e"]
-radius = 1100.0
+radius = 2000.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pbwgq"]
-radius = 600.0
+radius = 900.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ol1k5"]
 radius = 0.0
@@ -51,7 +51,6 @@ motion_mode = 1
 safe_margin = 0.001
 script = ExtResource("1_r6l3r")
 metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape" type="CollisionShape2D" parent="PlayerBody"]
 shape = SubResource("CircleShape2D_lryba")

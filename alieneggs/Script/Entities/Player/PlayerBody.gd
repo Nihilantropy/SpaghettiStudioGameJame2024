@@ -56,7 +56,7 @@ func calc_velocity(delta):
 		last_movement = movement
 	else:
 		seconds_pressed -= delta * DECEL_FIXED \
-		 				if seconds_pressed >= delta * DECEL_FIXED else 0
+		 				if seconds_pressed >= delta * DECEL_FIXED else seconds_pressed
 		movement = last_movement
 	speed = get_acceleration()
 	velocity = movement * speed
@@ -79,7 +79,7 @@ func update_noise():
 	update_noise_area()
 
 func update_noise_area():
-	#850px max, 100px min
+	#2000px max, 100px min
 	var min_area = 100
 	noise_area_collision.shape.radius = min_area + get_noise_area_increm()
 
@@ -87,5 +87,5 @@ func get_volume_percentage():
 	return (speed * 100) / ACCEL_LIMIT
 
 func get_noise_area_increm():
-	return (750 * get_volume_percentage()) / 100
+	return (1900 * get_volume_percentage()) / 100
 	

@@ -10,12 +10,14 @@ func _on_quit_pressed() -> void:
 func _on_level_1_pressed() -> void:
 	hide()
 	GlobalVariables.level = "res://Scene/Game/Level1.tscn"
+	GlobalVariables.game_mode = GlobalVariables.MOTHERMODE
 	get_tree().paused = 1
 	$"../VideoManager".config_and_play(load("res://Asset/Video/video_intro.ogv"), _on_intro_video_finished)
 
 func _on_level_2_pressed() -> void:
 	hide()
-	GlobalVariables.level = "res://Scene/Game/Level2.tscn"
+	GlobalVariables.level = "res://Scene/Game/Level1.tscn"
+	GlobalVariables.game_mode = GlobalVariables.CHILDMODE
 	get_tree().paused = 1
 	$"../VideoManager".config_and_play(load("res://Asset/Video/video_intro.ogv"), _on_intro_video_finished)
 
@@ -25,4 +27,4 @@ func _on_back_pressed() -> void:
 
 func _on_intro_video_finished() -> void:
 	get_tree().paused = 0
-	get_tree().change_scene_to_file("res://Scene/Game/GameTemplate.tscn")
+	get_tree().change_scene_to_file("res://Scene/Game/MotherGame.tscn")

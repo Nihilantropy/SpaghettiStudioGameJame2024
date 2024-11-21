@@ -6,7 +6,7 @@ func get_background() -> Node2D:
 
 # Getter per il nodo SmallMap01
 func get_map() -> Node2D:
-	return $SmallMap01
+	return $Map
 
 # Getter per il nodo PlayerNode
 func get_player_node() -> Node2D:
@@ -14,7 +14,8 @@ func get_player_node() -> Node2D:
 
 # Getter per il nodo AlienNode
 func get_alien_node() -> Node2D:
-	return $AlienNode
+	return $AlienNode if GlobalVariables.is_mother_mode() \
+		else null
 
 # Getter per i nodi che iniziano con "EggNode"
 func get_egg_nodes() -> Array:

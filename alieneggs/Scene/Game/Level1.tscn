@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Script/Game/level_1.gd" id="1_0pg53"]
 [ext_resource type="PackedScene" uid="uid://wfqmk3olk2p4" path="res://Scene/Map/background.tscn" id="1_rnfba"]
-[ext_resource type="PackedScene" path="res://Scene/Map/small_map01.tscn" id="2_5ehxn"]
 [ext_resource type="PackedScene" uid="uid://cw5vfmwtm82ef" path="res://Scene/Entities/Player/Player.tscn" id="3_ihb51"]
+[ext_resource type="PackedScene" uid="uid://b4opvimmyttuf" path="res://Scene/Map/big_map.tscn" id="3_v6x28"]
 [ext_resource type="PackedScene" uid="uid://wxokwdu11m7g" path="res://Scene/Entities/Enemy/alien.tscn" id="4_lf52b"]
 [ext_resource type="PackedScene" uid="uid://4bttjwuvo0ml" path="res://Scene/Entities/Egg/egg.tscn" id="5_re7wi"]
 
@@ -12,16 +12,21 @@ script = ExtResource("1_0pg53")
 
 [node name="Background" parent="." instance=ExtResource("1_rnfba")]
 
-[node name="SmallMap01" parent="." instance=ExtResource("2_5ehxn")]
+[node name="Map" parent="." instance=ExtResource("3_v6x28")]
 
 [node name="PlayerNode" parent="." instance=ExtResource("3_ihb51")]
-position = Vector2(-52, 141)
+position = Vector2(1823, 1804)
 
 [node name="AlienNode" parent="." instance=ExtResource("4_lf52b")]
-position = Vector2(810, 38)
+position = Vector2(1556, -1918)
 
 [node name="EggNode" parent="." instance=ExtResource("5_re7wi")]
-position = Vector2(-770, 172)
+position = Vector2(-1268, -1935)
 
 [node name="EggNode2" parent="." instance=ExtResource("5_re7wi")]
-position = Vector2(-47, 525)
+position = Vector2(-1690, 1810)
+
+[node name="EggNode3" parent="." instance=ExtResource("5_re7wi")]
+position = Vector2(-20, -731)
+
+[editable path="PlayerNode"]
