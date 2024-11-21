@@ -17,7 +17,7 @@ var current_walk: AudioStreamPlayer = null
 var playing_walk: AudioStreamPlayer = null
 
 func _process(_delta: float) -> void:
-	if GlobalVariables.eggs_number == 0:
+	if GlobalVariables.eggs_number == 0 && !root_node.eggs_hatched:
 		root_node.handle_win()
 	if current_walk != playing_walk:
 		if (playing_walk):
@@ -26,13 +26,15 @@ func _process(_delta: float) -> void:
 		if playing_walk:
 			playing_walk.play()
 	
-
 func _physics_process(delta: float) -> void:
 	calc_velocity(delta)
 	move_and_slide()
 	update_noise()
 	check_collision()
 
+func set_root(root):
+	root_node = root
+	
 func set_current_walk():
 	var vol_perc = get_volume_percentage()
 	if vol_perc < 1:

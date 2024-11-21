@@ -27,4 +27,7 @@ func _on_back_pressed() -> void:
 
 func _on_intro_video_finished() -> void:
 	get_tree().paused = 0
-	get_tree().change_scene_to_file("res://Scene/Game/MotherGame.tscn")
+	if GlobalVariables.is_mother_mode():
+		get_tree().change_scene_to_file("res://Scene/Game/MotherGame.tscn")
+	else:
+		get_tree().change_scene_to_file("res://Scene/Game/ChildGame.tscn")

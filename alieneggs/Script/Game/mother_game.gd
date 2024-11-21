@@ -13,8 +13,10 @@ var wall_timer
 var battery_shot_sound
 var	visibility_duration = 0.8  # Duration for which sprites stay visible
 var	battery_usable = true;
+var eggs_hatched = false
 
 var show_all = false
+var is_ready = false
 
 signal battery_shot_used
 signal battery_not_usable
@@ -32,6 +34,9 @@ func _ready() -> void:
 	alien_node.set_player(player)
 	alien_node.set_eggs(eggs)
 	alien_node.set_root(self)
+	player.set_root(self)
+	for egg in eggs:
+		egg.set_root(self)
 	alien_node.start()
 	main_ui.show()
 	if show_all:
@@ -56,6 +61,9 @@ func setup_entities():
 	player_node.terminal = main_ui.terminal
 	
 func _process(_delta: float) -> void:
+	if !is_ready:
+		is_ready = true
+		main_ui.hide_loading()
 	if player:
 		var noise_percentage = player.get_volume_percentage()
 		main_ui.hanlde_noise_level(noise_percentage)

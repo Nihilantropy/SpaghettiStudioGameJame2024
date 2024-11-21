@@ -14,8 +14,7 @@ func get_player_node() -> Node2D:
 
 # Getter per il nodo AlienNode
 func get_alien_node() -> Node2D:
-	return $AlienNode if GlobalVariables.is_mother_mode() \
-		else null
+	return $AlienNode
 
 # Getter per i nodi che iniziano con "EggNode"
 func get_egg_nodes() -> Array:

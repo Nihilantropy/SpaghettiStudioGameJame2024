@@ -70,12 +70,11 @@ layout_mode = 2
 
 [node name="Level1" type="Button" parent="StartMenu/PlayMenu"]
 layout_mode = 2
-text = "Level 1"
+text = "Mode 1"
 
 [node name="Level2" type="Button" parent="StartMenu/PlayMenu"]
-visible = false
 layout_mode = 2
-text = "Level 2"
+text = "Mode 2"
 
 [node name="Back" type="Button" parent="StartMenu/PlayMenu"]
 layout_mode = 2

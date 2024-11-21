@@ -14,3 +14,6 @@ func hide_ui():
 
 func _ready() -> void:
 	$PauseMenu.radarShader = $HBoxContainer/Radar/Control
+	
+func hide_loading():
+	$LoadingImage.hide()

@@ -18,7 +18,7 @@ script = ExtResource("1_0pg53")
 position = Vector2(1823, 1804)
 
 [node name="AlienNode" parent="." instance=ExtResource("4_lf52b")]
-position = Vector2(1556, -1918)
+position = Vector2(1482, -1929)
 
 [node name="EggNode" parent="." instance=ExtResource("5_re7wi")]
 position = Vector2(-1268, -1935)
@@ -28,5 +28,8 @@ position = Vector2(-1690, 1810)
 
 [node name="EggNode3" parent="." instance=ExtResource("5_re7wi")]
 position = Vector2(-20, -731)
+
+[node name="EggNode4" parent="." instance=ExtResource("5_re7wi")]
+position = Vector2(1357, 1319)
 
 [editable path="PlayerNode"]

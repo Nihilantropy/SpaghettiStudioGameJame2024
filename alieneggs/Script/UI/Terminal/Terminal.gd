@@ -4,10 +4,30 @@ extends Control
 @onready var terminal_info_text = $Screen/Info
 @onready var terminal_goal_text: RichTextLabel = $Screen/Goal
 
+var root_node
+
 var is_enemy_in_sound = false
 var is_enemy_in_radar = false
 var is_enemy_in_noise = false
+
+var eggs_has_arised = false
+
 var font
+
+func _process(_delta: float) -> void:
+	if GlobalVariables.is_mother_mode():
+		return
+	var text
+	if !eggs_has_arised:
+		terminal_goal_text.add_theme_color_override("default_color", Color(0, 1, 0))
+		text = "Find and destroy all the eggs before they'll be born: "\
+			+str(int(root_node.play_time.time_left) - (int(root_node.play_time.wait_time)/2.0)) + \
+			"\n   Eggs Remaining: " + str(GlobalVariables.eggs_number)
+	else:
+		terminal_goal_text.add_theme_color_override("default_color", Color(1, 0, 0))
+		text = "The eggs has born, Run from the alien till the rescue arrives: "\
+		+ str(int(root_node.play_time.time_left))
+	update_goal_terminal(text)
 
 func setup_terminal() -> void:
 	font = FontFile.new()
@@ -133,3 +153,6 @@ func show_enemy_status_after_exit():
 		enemy_in_radar()
 	if is_enemy_in_sound:
 		enemy_in_sound()
+		
+func eggs_arised():
+	eggs_has_arised = true
