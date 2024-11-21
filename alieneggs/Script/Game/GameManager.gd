@@ -12,6 +12,7 @@ extends Node2D
 var	visibility_duration = 0.8  # Duration for which sprites stay visible
 
 var	battery_usable = true;
+var is_testing = true
 
 signal battery_shot_used
 signal battery_not_usable
@@ -23,7 +24,11 @@ func _ready() -> void:
 	alien.set_eggs([$Egg, $Egg1, $Egg2, $Egg3])
 	alien.set_root(self)
 	alien.start()
-	_on_wall_timer_timeout() #Hide All
+	main_ui.show()
+	if is_testing:
+		main_ui.hide_ui()
+	else:
+		_on_wall_timer_timeout() #Hide All
 	$PlayerNode.set_enemy(alien.get_alien())
 	$PlayerNode.alien_node = alien
 	
@@ -49,6 +54,8 @@ func _input(event: InputEvent) -> void:
 			battery_died.emit()
 		
 func start_wall_timer():
+	if is_testing:
+		return
 	if not wall_timer:
 		push_error("WallTimer node not found!")
 		return
@@ -77,7 +84,7 @@ func _on_battery_recharge_timer_timeout() -> void:
 		GlobalVariables.battery_shots += 1
 
 func _on_sprite_timer_timeout() -> void:
-	if battery_usable == false:
+	if battery_usable == false || is_testing:
 		return
 	# Show all sprites (alien and eggs)
 	alien.show()

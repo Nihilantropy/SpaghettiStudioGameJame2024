@@ -5,8 +5,10 @@ extends Node
 
 func hanlde_noise_level(noise_percentage):
 	noise_level.update_noise_bar(noise_percentage)
-func handle_radar():
-	pass
+
+func hide_ui():
+	$HBoxContainer.hide()
+	$ColorRect.hide()
 
 func _ready() -> void:
 	$PauseMenu.radarShader = $HBoxContainer/Radar/Control

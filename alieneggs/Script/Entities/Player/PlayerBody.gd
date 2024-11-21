@@ -16,7 +16,6 @@ var root_node = null
 var current_walk: AudioStreamPlayer = null
 var playing_walk: AudioStreamPlayer = null
 
-
 func _process(_delta: float) -> void:
 	if GlobalVariables.eggs_number == 0:
 		root_node.handle_win()
@@ -52,7 +51,6 @@ func calc_velocity(delta):
 	movement.y = Input.get_axis("ui_up", "ui_down")
 	movement.normalized()
 	is_accelerating = max(abs(movement.x), abs(movement.y))
-	#accelerating_matt_method(is_accelerating)
 	if (is_accelerating):
 		seconds_pressed += delta 
 		last_movement = movement
@@ -75,16 +73,6 @@ func check_collision():
 
 func get_acceleration():
 	return ACCEL_LIMIT * (1 - exp(ACCEL_FIXED * -seconds_pressed))
-
-func accelerating_matt_method(is_accelerating):
-	if (is_accelerating):
-		speed += 5
-	else:
-		speed -= 5
-		if speed <= 0:
-			speed = 0
-	if speed >= ACCEL_LIMIT:
-		speed = ACCEL_LIMIT
 
 func update_noise():
 	set_current_walk()
