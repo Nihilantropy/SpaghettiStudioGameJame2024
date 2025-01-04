@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://db4x7trxrqqyw"]
+[gd_scene load_steps=3 format=3 uid="uid://db4x7trxrqqyw"]
 
 [ext_resource type="Script" path="res://Script/Interaction/VideoManager/video_manager.gd" id="1_mk5ur"]
+[ext_resource type="Texture2D" uid="uid://ram13ajy4b50" path="res://Scene/Interaction/VideoManager/progress_bar.png" id="2_0bhcq"]
 
 [node name="VideoManager" type="Control"]
 process_mode = 3
@@ -26,8 +27,20 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -226.0
-offset_top = -42.0
+offset_top = -57.0
+offset_bottom = -15.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 30
 text = "Hold Esc to skip"
+
+[node name="ClockwiseProgress" type="TextureProgressBar" parent="SkipLabel"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = -13.0
+offset_right = 265.0
+offset_bottom = 157.0
+scale = Vector2(0.45, 0.4)
+fill_mode = 5
+texture_progress = ExtResource("2_0bhcq")
+tint_progress = Color(0, 0.564706, 0, 1)

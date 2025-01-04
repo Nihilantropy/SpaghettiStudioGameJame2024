@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://byibekw73sx8c"]
+
+[ext_resource type="Script" path="res://Script/Game/mother_game.gd" id="1_7pass"]
+[ext_resource type="PackedScene" uid="uid://bbqbnh0v1wgrq" path="res://Scene/UI/MainUI.tscn" id="2_50xde"]
+[ext_resource type="AudioStream" uid="uid://byuxmh6hsp3k6" path="res://Asset/Audio/radarBoost.mp3" id="3_y83ev"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_7pass")
+
+[node name="AmbientLoop" type="AudioStreamPlayer" parent="."]
+autoplay = true
+
+[node name="MainUi" parent="." instance=ExtResource("2_50xde")]
+visible = false
+
+[node name="SpriteTimer" type="Timer" parent="."]
+wait_time = 1.4
+autostart = true
+
+[node name="WallTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="BatteryRechargeTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="BatteryShotSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_y83ev")
+
+[connection signal="battery_died" from="." to="MainUi/HBoxContainer/Terminal" method="_on_game_battery_died"]
+[connection signal="battery_recharge" from="." to="MainUi/HBoxContainer/Battery" method="_on_game_battery_recharge"]
+[connection signal="battery_recharge" from="." to="MainUi/HBoxContainer/Terminal" method="_on_game_battery_recharge"]
+[connection signal="battery_shot_used" from="." to="MainUi/HBoxContainer/Battery" method="_on_game_battery_shot_used"]
+[connection signal="battery_shot_used" from="." to="MainUi/HBoxContainer/Terminal" method="_on_game_battery_shot_used"]
+[connection signal="timeout" from="SpriteTimer" to="." method="_on_sprite_timer_timeout"]
+[connection signal="timeout" from="WallTimer" to="." method="_on_wall_timer_timeout"]
+[connection signal="timeout" from="BatteryRechargeTimer" to="." method="_on_battery_recharge_timer_timeout"]

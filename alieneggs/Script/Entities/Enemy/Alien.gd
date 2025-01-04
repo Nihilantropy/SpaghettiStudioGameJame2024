@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
+@onready var alien_node = $".."
 
 const SLOW_SPEED = 40
 const NORMAL_SPEED = 70
@@ -25,9 +26,9 @@ func _physics_process(_delta: float) -> void:
 		move_and_slide()
 		
 func makePath() -> void:
-	if target == egg:
-		if egg.broken:
-			change_target(0)
+	#if target == egg:
+		#if egg.broken:
+			#change_target(0)
 	nav_agent.target_position = target.global_position
 
 func make_noise():
@@ -44,7 +45,7 @@ func make_noise():
 	sound.play()
 
 func choose_new_egg():
-	egg = eggs[rng.randi_range(0, 3)]
+	egg = eggs[rng.randi_range(0, GlobalVariables.eggs_max_number - 1)]
 	
 func _on_timer_timeout() -> void:
 		makePath()

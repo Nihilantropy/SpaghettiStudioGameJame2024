@@ -2,6 +2,7 @@ extends Control
 
 @onready var SkipLabel: Label = $SkipLabel
 @onready var VideoPlayer: VideoStreamPlayer = $VideoPlayer
+@onready var progress: TextureProgressBar = $SkipLabel/ClockwiseProgress
 
 const _SKIPPING_TIME = 1
 
@@ -17,6 +18,7 @@ func _process(delta: float) -> void:
 			stop()
 		_pressed_time += (1 if Input.is_action_pressed("Pause") else -1) * delta
 		_pressed_time = max(_pressed_time, 0)
+		progress.value = _pressed_time * 100
 		if VideoPlayer && _pressed_time >= _SKIPPING_TIME:
 			stop()
 			_pressed_time = 0

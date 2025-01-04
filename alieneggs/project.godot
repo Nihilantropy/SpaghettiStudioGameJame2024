@@ -19,6 +19,10 @@ config/icon="res://Asset/Entities/Enemy/skull.png"
 
 GlobalVariables="*res://Script/Game/GlobalVariables/GlobalVariables.gd"
 
+[debug]
+
+shapes/paths/geometry_color=Color(1, 0, 0, 1)
+
 [display]
 
 window/stretch/mode="canvas_items"
@@ -45,6 +49,7 @@ Pause={
 
 [navigation]
 
+2d/use_edge_connections=false
 2d/default_edge_connection_margin=32.0
 
 [physics]
