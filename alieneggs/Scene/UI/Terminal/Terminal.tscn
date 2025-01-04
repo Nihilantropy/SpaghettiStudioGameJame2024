@@ -67,45 +67,46 @@ grow_vertical = 2
 texture = ExtResource("1_2sbbb")
 patch_margin_top = 100
 
-[node name="Goal" type="RichTextLabel" parent="Screen"]
-material = SubResource("ShaderMaterial_4wwub")
-layout_mode = 2
-offset_left = 8.0
-offset_top = 21.0
-offset_right = 425.0
-offset_bottom = 123.0
-theme_override_fonts/normal_font = SubResource("FontFile_7p2cy")
-theme_override_fonts/mono_font = SubResource("FontFile_ya7e8")
-theme_override_font_sizes/mono_font_size = 0
-bbcode_enabled = true
-scroll_following = true
-tab_size = 2
-
-[node name="Info" type="RichTextLabel" parent="Screen"]
-material = SubResource("ShaderMaterial_4wwub")
-layout_mode = 2
-offset_left = 10.0
-offset_top = 116.0
-offset_right = 423.0
-offset_bottom = 216.0
-grow_horizontal = 2
-theme_override_fonts/normal_font = SubResource("FontFile_7p2cy")
-theme_override_fonts/mono_font = SubResource("FontFile_ya7e8")
-theme_override_font_sizes/mono_font_size = 0
-bbcode_enabled = true
-scroll_following = true
-tab_size = 2
-
-[node name="Messages" type="RichTextLabel" parent="Screen"]
+[node name="VBox" type="VBoxContainer" parent="Screen"]
 layout_mode = 0
-offset_left = 11.0
-offset_top = 210.0
-offset_right = 427.0
-offset_bottom = 304.0
+offset_left = 3.0
+offset_top = 7.0
+offset_right = 430.0
+offset_bottom = 369.0
+
+[node name="Goal" type="RichTextLabel" parent="Screen/VBox"]
+material = SubResource("ShaderMaterial_4wwub")
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_fonts/normal_font = SubResource("FontFile_7p2cy")
+theme_override_fonts/mono_font = SubResource("FontFile_ya7e8")
+theme_override_font_sizes/mono_font_size = 0
+bbcode_enabled = true
+scroll_following = true
+tab_size = 2
+
+[node name="SupportItem" type="RichTextLabel" parent="Screen/VBox"]
+material = SubResource("ShaderMaterial_4wwub")
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_fonts/normal_font = SubResource("FontFile_7p2cy")
+theme_override_fonts/mono_font = SubResource("FontFile_ya7e8")
+theme_override_font_sizes/mono_font_size = 0
+bbcode_enabled = true
+scroll_following = true
+tab_size = 2
+
+[node name="EnemyStatus" type="RichTextLabel" parent="Screen/VBox"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
 theme_override_fonts/normal_font = SubResource("FontFile_jmto5")
 theme_override_fonts/mono_font = SubResource("FontFile_lcmmr")
 theme_override_font_sizes/mono_font_size = 0
 tab_size = 2
+
+[node name="EggStatus" type="RichTextLabel" parent="Screen/VBox"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 1

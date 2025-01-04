@@ -15,7 +15,7 @@ var	visibility_duration = 0.8  # Duration for which sprites stay visible
 var	battery_usable = true;
 var eggs_hatched = false
 
-var show_all = true
+var show_all = false
 var is_ready = false
 
 signal battery_shot_used

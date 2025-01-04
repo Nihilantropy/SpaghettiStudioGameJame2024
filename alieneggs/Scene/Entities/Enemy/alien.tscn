@@ -46,7 +46,6 @@ texture = ExtResource("2_qpxpx")
 shape = SubResource("CircleShape2D_m6i5k")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="AlienBody"]
-debug_enabled = true
 
 [node name="Timer" type="Timer" parent="AlienBody"]
 wait_time = 0.5

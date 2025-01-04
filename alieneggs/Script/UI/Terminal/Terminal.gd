@@ -1,8 +1,9 @@
 extends Control
 
-@onready var terminal_text = $Screen/Messages
-@onready var terminal_info_text = $Screen/Info
-@onready var terminal_goal_text: RichTextLabel = $Screen/Goal
+@onready var terminal_eggs_text = $Screen/VBox/EggStatus
+@onready var terminal_enemy_text = $Screen/VBox/EnemyStatus
+@onready var terminal_supportItem_text = $Screen/VBox/SupportItem
+@onready var terminal_goal_text: RichTextLabel = $Screen/VBox/Goal
 
 var root_node
 
@@ -34,8 +35,9 @@ func setup_terminal() -> void:
 	font.fixed_size = 14
 	font.font_data = load("res://Script/UI/Terminal/Font/Courier MonoThai Regular.ttf")
 	
-	setup_terminal_text(terminal_text)
-	setup_terminal_text(terminal_info_text)
+	setup_terminal_text(terminal_eggs_text)
+	setup_terminal_text(terminal_enemy_text)
+	setup_terminal_text(terminal_supportItem_text)
 	setup_terminal_text(terminal_goal_text)
 	
 	show_info_standard()
@@ -48,13 +50,17 @@ func setup_terminal_text(textLabel):
 	textLabel.add_theme_color_override("default_bg_color", Color(0, 0, 0)) # Black background
 	textLabel.add_theme_font_override("default_font", font)
 	
-func update_messages_terminal(message: String) -> void:
-	terminal_text.clear()
-	terminal_text.add_text(message)
+func update_eggs_terminal(message: String) -> void:
+	terminal_eggs_text.clear()
+	terminal_eggs_text.add_text(message)
+	
+func update_enemy_terminal(message: String) -> void:
+	terminal_enemy_text.clear()
+	terminal_enemy_text.add_text(message)
 
-func update_info_terminal(message: String) -> void:
-	terminal_info_text.clear()
-	terminal_info_text.add_text(message)
+func update_supportItem_terminal(message: String) -> void:
+	terminal_supportItem_text.clear()
+	terminal_supportItem_text.add_text(message)
 
 func update_goal_terminal(message: String) -> void:
 	terminal_goal_text.clear()
@@ -70,80 +76,64 @@ func show_goal():
 func show_info_standard():
 	var text
 	
-	terminal_info_text.add_theme_color_override("default_color", Color(1, 1, 0))
-	text ="Press space to shoot a battery and boost the radar"
-	update_info_terminal(text)
-
-func _on_game_battery_shot_used() -> void:
-	terminal_text.add_theme_color_override("default_color", Color(1, 1, 0))
-	update_messages_terminal("Battery shot used!")
-
-func _on_game_battery_recharge() -> void:
-	terminal_text.add_theme_color_override("default_color", Color(0, 1, 1))
-	update_messages_terminal("Battery shot recharged!")
-	show_info_standard()
-
-func _on_game_battery_died() -> void:
-	terminal_info_text.add_theme_color_override("default_color", Color(1, 0, 0))
-	update_info_terminal("Battery is dead...\nWait for the recharge")
+	terminal_supportItem_text.add_theme_color_override("default_color", Color(1, 1, 0))
+	text ="Hold and release Space to throw a bomb\nto stun the Alien when it's close"
+	update_supportItem_terminal(text)
 
 func update_egg() -> void:
-	terminal_text.add_theme_color_override("default_color", Color(0, 1, 1))
-	var text = "Egg destroied: " + str(GlobalVariables.eggs_number)
-	update_messages_terminal(text)
 	show_goal()
 
 func display_lose_text():
-	terminal_text.clear()
-	terminal_info_text.clear()
+	terminal_enemy_text.clear()
+	terminal_supportItem_text.clear()
 	terminal_goal_text.clear()
 	terminal_goal_text.add_theme_color_override("default_color", Color(1, 0, 0))
 	update_goal_terminal(" GAME OVER: The Alien Mother has killed you!")
 
 func display_win_text():
-	terminal_text.clear()
-	terminal_info_text.clear()
+	terminal_enemy_text.clear()
+	terminal_supportItem_text.clear()
 	terminal_goal_text.clear()
 	terminal_goal_text.add_theme_color_override("default_color", Color(0, 1, 0))
 	update_goal_terminal(" YOU WON: The rescue has arrived")
 
 func enemy_in_sound():
 	is_enemy_in_sound = true
-	terminal_text.add_theme_color_override("default_color", Color(1, 0, 0))
+	terminal_enemy_text.add_theme_color_override("default_color", Color(1, 0, 0))
 	var text = "Watch-out the enemy is near don't make too much noise"
-	update_messages_terminal(text)
+	update_enemy_terminal(text)
 	
 func enemy_out_sound():
 	is_enemy_in_sound = false
-	terminal_text.add_theme_color_override("default_color", Color(0, 1, 0))
+	terminal_enemy_text.add_theme_color_override("default_color", Color(0, 1, 0))
 	var text = "The enemy is far enough to move freely"
-	update_messages_terminal(text)
+	update_enemy_terminal(text)
 	show_enemy_status_after_exit()
 
 func enemy_in_radar():
 	is_enemy_in_radar = true
-	terminal_text.add_theme_color_override("default_color", Color(1, 0, 0))
+	terminal_enemy_text.add_theme_color_override("default_color", Color(1, 0, 0))
 	var text = "RUN the enemy is sniffing and coming to you"
-	update_messages_terminal(text)
+	update_enemy_terminal(text)
 	
 func enemy_out_radar():
 	is_enemy_in_radar = false
-	terminal_text.add_theme_color_override("default_color", Color(0, 1, 0))
+	terminal_enemy_text.add_theme_color_override("default_color", Color(0, 1, 0))
 	var text = "The enemy can't smell you anymore"
-	update_messages_terminal(text)
+	update_enemy_terminal(text)
 	show_enemy_status_after_exit()
 	
 func enemy_in_noise():
 	is_enemy_in_noise = true
-	terminal_text.add_theme_color_override("default_color", Color(1, 0, 0))
+	terminal_enemy_text.add_theme_color_override("default_color", Color(1, 0, 0))
 	var text = "THE ENEMY CAN HEAR YOU AND IS CHASING YOU"
-	update_messages_terminal(text)
+	update_enemy_terminal(text)
 	
 func enemy_out_noise():
 	is_enemy_in_noise = false
-	terminal_text.add_theme_color_override("default_color", Color(0, 1, 0))
+	terminal_enemy_text.add_theme_color_override("default_color", Color(0, 1, 0))
 	var text = "The enemy can't hear you anymore"
-	update_messages_terminal(text)
+	update_enemy_terminal(text)
 	show_enemy_status_after_exit()
 
 func show_enemy_status_after_exit():
