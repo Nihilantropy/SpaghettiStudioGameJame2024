@@ -8,22 +8,17 @@ var alien_nodes_list: Array
 var eggs
 var map
 
-@onready var sprite_timer = $SpriteTimer
 @onready var main_ui = $MainUi
-@onready var wall_timer = $WallTimer
-@onready var battery_shot_sound = $BatteryShotSound
+@onready var visibility_timer = $VisibilityTimer
+@onready var radar_timer = $RadarTimer
 @onready var play_time = $PlayTime
 var	visibility_duration = 0.8  # Duration for which sprites stay visible
-var	battery_usable = true;
 var eggs_hatched = false
+
+var show_entities: bool = true
 
 var show_all = false
 var is_ready = false
-
-signal battery_shot_used
-signal battery_not_usable
-signal battery_recharge
-signal battery_died
 
 var resource
 
@@ -71,8 +66,8 @@ func setup_entities():
 		main_ui.hide_ui()
 	else:
 		main_ui.show()
-		_on_wall_timer_timeout() #Hide All
-		
+	_on_radar_timer_timeout() #Hide All
+	
 func _process(_delta: float) -> void:
 	if !is_ready:
 		is_ready = true
@@ -99,89 +94,57 @@ func add_alien(new_born):
 	alien_nodes_list.append(new_born)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_battery_shot"):
-		if GlobalVariables.battery_shots > 0:
-			if battery_usable:
-				battery_usable = false
-				GlobalVariables.battery_shots -= 1
-				battery_shot_sound.play()
-				battery_shot_used.emit()
-				start_wall_timer()
-			else:
-				battery_not_usable.emit()
-		else:
-			battery_died.emit()
+	if event.is_action_pressed("ui_stoon_bomb"):
+		print("stoon bomb used!")
 		
-func start_wall_timer():
+func start_visibility_timer():
 	if show_all:
 		return
-	if not wall_timer:
-		push_error("WallTimer node not found!")
+	if not visibility_timer:
+		push_error("VisibilityTimer node not found!")
 		return
 	if not map:
 		push_error("Wall node not found!")
 		return
-	wall_timer.start()
-	for alien_node in alien_nodes_list:
-		alien_node.show()
+	visibility_timer.start()
 	map.show()
-	for egg in eggs:
-		if !egg.broken:
-			egg.show()
-	
-func _on_wall_timer_timeout() -> void:
-	map.hide()
-	for alien_node in alien_nodes_list:
-		alien_node.hide()
-	for egg in eggs:
-		if !egg.broken:
-			egg.hide()
-	battery_usable = true
-	return	
-		
-func _on_battery_recharge_timer_timeout() -> void:
-	if GlobalVariables.battery_shots < 6:
-		battery_recharge.emit()
-		GlobalVariables.battery_shots += 1
+	if show_entities:
+		for alien in alien_nodes_list:
+			if alien:
+				alien.show()
+		for egg in eggs:
+			if !egg.broken:
+				egg.show()
 
-func _on_sprite_timer_timeout() -> void:
-	if battery_usable == false || show_all:
-		return
-	# Show all sprites (alien and eggs)
-	for alien_node in alien_nodes_list:
-		alien_node.show()
-	for egg in eggs:
-		if !egg.broken:
-			egg.show()
-	await get_tree().create_timer(visibility_duration).timeout	
-	if battery_usable == false:
-		return
-	# Hide all sprites
-	for alien_node in alien_nodes_list:
-		alien_node.hide()
-	for egg in eggs:
-		if !egg.broken:
-			egg.hide()
+func _on_visibility_timer_timeout() -> void:
+	map.hide()
+	if show_entities:
+		for alien in alien_nodes_list:
+			if alien:
+				alien.hide()
+		for egg in eggs:
+			if !egg.broken:
+				egg.hide()
+
+func _on_radar_timer_timeout() -> void:
+	start_visibility_timer()
 
 func handle_win():
 	get_tree().paused = 1
-	$MainUi/HBoxContainer/Battery.hide()
 	$MainUi/HBoxContainer/Terminal.hide()
-	$MainUi/HBoxContainer/Radar/Control.hide()
+	$MainUi/HBoxContainer/Radar.hide()
 	$MainUi/HBoxContainer/NoiseLevel.hide()
 	$MainUi/VideoManager.config_and_play(load("res://Asset/Video/you_win.ogv"), _on_win_video_finished)
 
 func handle_lose():
 	get_tree().paused = 1
-	$MainUi/HBoxContainer/Battery.hide()
 	$MainUi/HBoxContainer/Terminal.hide()
-	$MainUi/HBoxContainer/Radar/Control.hide()
+	$MainUi/HBoxContainer/Radar.hide()
 	$MainUi/HBoxContainer/NoiseLevel.hide()
 	$MainUi/VideoManager.config_and_play(load("res://Asset/Video/you_lose.ogv"), _on_lose_video_finished)
 
 func _on_lose_video_finished() -> void:
 	$MainUi/HBoxContainer/Terminal.display_lose_text()
-	$MainUi/HBoxContainer/Battery.show()
 	$MainUi/HBoxContainer/Terminal.show()
 	$MainUi/HBoxContainer/NoiseLevel.show()
 	$MainUi/PauseMenu.show()
@@ -189,7 +152,6 @@ func _on_lose_video_finished() -> void:
 
 func _on_win_video_finished() -> void:
 	$MainUi/HBoxContainer/Terminal.display_win_text()
-	$MainUi/HBoxContainer/Battery.show()
 	$MainUi/HBoxContainer/Terminal.show()
 	$MainUi/HBoxContainer/NoiseLevel.show()
 	$MainUi/PauseMenu.show()

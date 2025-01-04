@@ -13,9 +13,13 @@ script = ExtResource("1_0pg53")
 [node name="Background" parent="." instance=ExtResource("1_rnfba")]
 
 [node name="Map" parent="." instance=ExtResource("3_v6x28")]
+visible = false
 
 [node name="PlayerNode" parent="." instance=ExtResource("3_ihb51")]
 position = Vector2(1823, 1804)
+
+[node name="PlayerBody" parent="PlayerNode" index="5"]
+position = Vector2(-13, -4)
 
 [node name="AlienNode" parent="." instance=ExtResource("4_lf52b")]
 position = Vector2(1280, 1431)

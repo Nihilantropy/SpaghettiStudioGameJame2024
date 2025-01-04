@@ -6,6 +6,7 @@ uniform float wait_time: hint_range(0.0, 5.0, 0.1) = 0.5;
 uniform float speed: hint_range(0.0, 10.0, 0.1) = 1.0;
 uniform float alpha_boost: hint_range(1.0, 5.0, 0.1) = 2.0;
 uniform vec4 circle_color: source_color;
+uniform float time;
 
 // --- Functions --- //
 void fragment() {

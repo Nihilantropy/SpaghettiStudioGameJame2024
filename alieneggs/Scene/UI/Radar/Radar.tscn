@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://btqu5jb37xgqb"]
+[gd_scene load_steps=4 format=3 uid="uid://btqu5jb37xgqb"]
 
 [ext_resource type="PackedScene" uid="uid://r30ppmyukpdp" path="res://Scene/UI/ring_wave/ring_wave.tscn" id="1_5602q"]
+[ext_resource type="Script" path="res://Script/UI/Radar/Radar.gd" id="1_jmjkj"]
+[ext_resource type="Texture2D" uid="uid://botu04kb8jejd" path="res://Asset/UI/Radar/Radar.png" id="2_8v6x7"]
 
 [node name="Radar" type="Control"]
 layout_mode = 3
@@ -10,10 +12,21 @@ anchor_bottom = 1.0
 offset_right = -739.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jmjkj")
 
 [node name="Control" parent="." instance=ExtResource("1_5602q")]
 layout_mode = 1
-offset_left = 35.0
-offset_top = -2.0
 offset_right = 35.0
-offset_bottom = -2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.196078)
+position = Vector2(185, 284)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_8v6x7")
+
+[node name="SonarStartTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="SonarStartTimer" to="." method="_on_sonar_start_timer_timeout"]
