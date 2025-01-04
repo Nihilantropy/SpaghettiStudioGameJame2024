@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://cbg4uv6u0bvoq" path="res://Asset/Audio/heartbeat.mp3" id="6_77nho"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lryba"]
-radius = 20.025
+radius = 5.9
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pu30e"]
 radius = 2000.0
@@ -19,10 +19,10 @@ radius = 2000.0
 radius = 900.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ol1k5"]
-radius = 0.0
+radius = 0.01
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t3w08"]
-radius = 37.1214
+radius = 7.0
 
 [node name="PlayerNode" type="Node2D"]
 script = ExtResource("1_mrmo3")

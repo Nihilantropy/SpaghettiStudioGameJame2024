@@ -34,7 +34,7 @@ volume_db = 10.0
 [node name="AlienBody" type="CharacterBody2D" parent="." groups=["enemy"]]
 motion_mode = 1
 wall_min_slide_angle = 0.0
-safe_margin = 0.001
+safe_margin = 1.0
 script = ExtResource("1_kbuoj")
 
 [node name="Sprite2D" type="Sprite2D" parent="AlienBody"]
@@ -46,6 +46,7 @@ texture = ExtResource("2_qpxpx")
 shape = SubResource("CircleShape2D_m6i5k")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="AlienBody"]
+debug_enabled = true
 
 [node name="Timer" type="Timer" parent="AlienBody"]
 wait_time = 0.5
