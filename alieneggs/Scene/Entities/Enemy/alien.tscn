@@ -48,11 +48,14 @@ shape = SubResource("CircleShape2D_m6i5k")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="AlienBody"]
 
 [node name="Timer" type="Timer" parent="AlienBody"]
-wait_time = 0.5
+wait_time = 0.1
 autostart = true
 
 [node name="NoiseTimer" type="Timer" parent="."]
 wait_time = 0.1
 
+[node name="StunTime" type="Timer" parent="."]
+
 [connection signal="timeout" from="AlienBody/Timer" to="AlienBody" method="_on_timer_timeout"]
 [connection signal="timeout" from="NoiseTimer" to="." method="_on_noise_timer_timeout"]
+[connection signal="timeout" from="StunTime" to="AlienBody" method="_on_stun_time_timeout"]

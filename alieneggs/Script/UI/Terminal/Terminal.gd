@@ -77,7 +77,7 @@ func show_info_standard():
 	var text
 	
 	terminal_supportItem_text.add_theme_color_override("default_color", Color(1, 1, 0))
-	text ="Hold and release Space to throw a bomb\nto stun the Alien when it's close"
+	text ="Press Space to throw a bomb\nto stun the Alien when it's close"
 	update_supportItem_terminal(text)
 
 func update_egg() -> void:

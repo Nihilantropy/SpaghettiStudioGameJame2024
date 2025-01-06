@@ -49,8 +49,8 @@ func set_current_walk():
 func calc_velocity(delta):
 	var is_accelerating = 0
 	
-	movement.x = Input.get_axis("ui_left", "ui_right")
-	movement.y = Input.get_axis("ui_up", "ui_down")
+	movement.x = Input.get_axis("left_mov", "right_mov")
+	movement.y = Input.get_axis("up_mov", "down_mov")
 	movement.normalized()
 	is_accelerating = max(abs(movement.x), abs(movement.y))
 	if (is_accelerating):

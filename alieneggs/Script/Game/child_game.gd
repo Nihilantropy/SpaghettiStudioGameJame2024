@@ -98,19 +98,12 @@ func add_alien(new_born):
 	new_born.start()
 	alien_nodes_list.append(new_born)
 
+
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_battery_shot"):
-		if GlobalVariables.battery_shots > 0:
-			if battery_usable:
-				battery_usable = false
-				GlobalVariables.battery_shots -= 1
-				battery_shot_sound.play()
-				battery_shot_used.emit()
-				start_wall_timer()
-			else:
-				battery_not_usable.emit()
-		else:
-			battery_died.emit()
+	if event.is_action_pressed("stun_bomb"):
+		if GlobalVariables.stun_bombs > 0:
+			GlobalVariables.stun_bombs -= 1
+			player_node.use_bomb()
 		
 func start_wall_timer():
 	if show_all:

@@ -14,6 +14,7 @@ var eggs = null
 var egg = null
 var target = null
 var in_player_area = 0
+var is_stun = false
 
 func start():
 	change_target(0)
@@ -21,9 +22,16 @@ func start():
 		each.alien = self
 
 func _physics_process(_delta: float) -> void:
+		if is_stun:
+			return
 		var dir = to_local(nav_agent.get_next_path_position()).normalized()
 		velocity = dir * speed
 		move_and_slide()
+		
+func stun(time):
+	$"../StunTime".wait_time = time
+	$"../StunTime".start()
+	is_stun = true
 		
 func makePath() -> void:
 	#if target == egg:
@@ -68,3 +76,5 @@ func got_out_noise_area():
 	change_target(-1)
 	speed = NORMAL_SPEED
 	
+func _on_stun_time_timeout() -> void:
+	is_stun = false

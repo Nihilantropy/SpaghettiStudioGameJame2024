@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cw5vfmwtm82ef"]
+[gd_scene load_steps=15 format=3 uid="uid://cw5vfmwtm82ef"]
 
 [ext_resource type="Script" path="res://Script/Entities/Player/PlayerNode.gd" id="1_mrmo3"]
 [ext_resource type="Script" path="res://Script/Entities/Player/PlayerBody.gd" id="1_r6l3r"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://duxin10mwbyoj" path="res://Asset/Audio/walk_fast.mp3" id="4_br2hw"]
 [ext_resource type="AudioStream" uid="uid://b73pkqi0c1gip" path="res://Asset/Audio/wall.mp3" id="5_jbl0w"]
 [ext_resource type="AudioStream" uid="uid://cbg4uv6u0bvoq" path="res://Asset/Audio/heartbeat.mp3" id="6_77nho"]
+[ext_resource type="PackedScene" uid="uid://b18186q66y82k" path="res://Scene/Entities/Player/stun_bomb.tscn" id="7_ck1od"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lryba"]
 radius = 5.9
@@ -22,7 +23,7 @@ radius = 900.0
 radius = 0.01
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t3w08"]
-radius = 30.0
+radius = 7.0
 
 [node name="PlayerNode" type="Node2D"]
 script = ExtResource("1_mrmo3")
@@ -45,6 +46,8 @@ stream = ExtResource("5_jbl0w")
 [node name="Heartbeat" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_77nho")
 volume_db = 10.0
+
+[node name="StunBomb" parent="." instance=ExtResource("7_ck1od")]
 
 [node name="PlayerBody" type="CharacterBody2D" parent="." groups=["player"]]
 motion_mode = 1

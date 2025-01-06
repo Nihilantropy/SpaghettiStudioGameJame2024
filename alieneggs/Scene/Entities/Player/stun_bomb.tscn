@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://b18186q66y82k"]
+
+[ext_resource type="Texture2D" uid="uid://bh3213q03t2a2" path="res://Asset/Entities/Player/bomb.png" id="1_u0o16"]
+[ext_resource type="Script" path="res://Scene/Entities/Player/stun_bomb.gd" id="1_vpkky"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j20w7"]
+radius = 56.5685
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87jxc"]
+atlas = ExtResource("1_u0o16")
+region = Rect2(20, 60, 650, 700)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7nu5"]
+atlas = ExtResource("1_u0o16")
+region = Rect2(670, 60, 650, 700)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4dds"]
+atlas = ExtResource("1_u0o16")
+region = Rect2(1320, 60, 650, 700)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmbr2"]
+atlas = ExtResource("1_u0o16")
+region = Rect2(20, 760, 650, 700)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4k11"]
+atlas = ExtResource("1_u0o16")
+region = Rect2(670, 760, 650, 700)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xr8c"]
+atlas = ExtResource("1_u0o16")
+region = Rect2(1320, 760, 650, 700)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s5f2m"]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": null
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_87jxc")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_y7nu5")
+}, {
+"duration": 1.7,
+"texture": SubResource("AtlasTexture_w4dds")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_rmbr2")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_w4k11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xr8c")
+}, {
+"duration": 0.5,
+"texture": null
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 7.0
+}]
+
+[node name="StunBomb" type="Node2D"]
+script = ExtResource("1_vpkky")
+
+[node name="Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
+shape = SubResource("CircleShape2D_j20w7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area"]
+z_index = 1
+position = Vector2(1.5, 2.00002)
+scale = Vector2(0.376923, 0.345714)
+sprite_frames = SubResource("SpriteFrames_s5f2m")
+animation = &"explosion"
+frame = 7
+frame_progress = 1.0
+
+[connection signal="animation_finished" from="Area/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
