@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://Script/Entities/Player/PlayerNode.gd" id="1_mrmo3"]
 [ext_resource type="Script" path="res://Script/Entities/Player/PlayerBody.gd" id="1_r6l3r"]
-[ext_resource type="AudioStream" uid="uid://ker13rdcd4h8" path="res://Asset/Audio/walk_slow.mp3" id="2_hf0yi"]
+[ext_resource type="AudioStream" uid="uid://c5oaj1egbdqfh" path="res://Asset/Audio/passi_multipli_lenti.mp3" id="2_2nsnu"]
 [ext_resource type="Texture2D" uid="uid://us1kgf36fhig" path="res://Asset/Entities/Player/PlayerSprite.png" id="2_o5olh"]
-[ext_resource type="AudioStream" uid="uid://cam1c02x7gh5p" path="res://Asset/Audio/run.mp3" id="3_y7rbq"]
-[ext_resource type="AudioStream" uid="uid://duxin10mwbyoj" path="res://Asset/Audio/walk_fast.mp3" id="4_br2hw"]
+[ext_resource type="AudioStream" uid="uid://djcrljwiwvs5l" path="res://Asset/Audio/passi_multipli_normale.mp3" id="3_n13qk"]
+[ext_resource type="AudioStream" uid="uid://dnued6dysy767" path="res://Asset/Audio/passi_multipli_veloce.mp3" id="4_g2huk"]
 [ext_resource type="AudioStream" uid="uid://b73pkqi0c1gip" path="res://Asset/Audio/wall.mp3" id="5_jbl0w"]
 [ext_resource type="AudioStream" uid="uid://cbg4uv6u0bvoq" path="res://Asset/Audio/heartbeat.mp3" id="6_77nho"]
 
@@ -28,16 +28,18 @@ radius = 30.0
 script = ExtResource("1_mrmo3")
 
 [node name="WalkSlow" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_hf0yi")
-volume_db = -5.0
+stream = ExtResource("2_2nsnu")
+parameters/looping = true
 
 [node name="WalkNormal" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_y7rbq")
-volume_db = -20.0
+stream = ExtResource("3_n13qk")
+volume_db = 4.188
+parameters/looping = true
 
 [node name="WalkFast" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_br2hw")
-volume_db = -20.0
+stream = ExtResource("4_g2huk")
+volume_db = 6.866
+parameters/looping = true
 
 [node name="Wall" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_jbl0w")
@@ -61,7 +63,8 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_o5olh")
 
 [node name="Camera2D" type="Camera2D" parent="PlayerBody"]
-offset = Vector2(380, -50)
+position = Vector2(-34, 108)
+offset = Vector2(397, -157)
 zoom = Vector2(0.5, 0.5)
 limit_smoothed = true
 

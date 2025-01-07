@@ -13,12 +13,11 @@ autoplay = true
 [node name="MainUi" parent="." instance=ExtResource("2_k5u4l")]
 visible = false
 
-[node name="SpriteTimer" type="Timer" parent="."]
-wait_time = 1.4
+[node name="RadarTimer" type="Timer" parent="."]
+wait_time = 3.0
 autostart = true
 
-[node name="WallTimer" type="Timer" parent="."]
-wait_time = 3.0
+[node name="VisibilityTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="BatteryRechargeTimer" type="Timer" parent="."]
@@ -35,12 +34,7 @@ visible = false
 enabled = false
 zoom = Vector2(0.1, 0.1)
 
-[connection signal="battery_died" from="." to="MainUi/HBoxContainer/Terminal" method="_on_game_battery_died"]
-[connection signal="battery_recharge" from="." to="MainUi/HBoxContainer/Battery" method="_on_game_battery_recharge"]
-[connection signal="battery_recharge" from="." to="MainUi/HBoxContainer/Terminal" method="_on_game_battery_recharge"]
-[connection signal="battery_shot_used" from="." to="MainUi/HBoxContainer/Battery" method="_on_game_battery_shot_used"]
-[connection signal="battery_shot_used" from="." to="MainUi/HBoxContainer/Terminal" method="_on_game_battery_shot_used"]
-[connection signal="timeout" from="SpriteTimer" to="." method="_on_sprite_timer_timeout"]
-[connection signal="timeout" from="WallTimer" to="." method="_on_wall_timer_timeout"]
+[connection signal="timeout" from="RadarTimer" to="." method="_on_radar_timer_timeout"]
+[connection signal="timeout" from="VisibilityTimer" to="." method="_on_wall_timer_timeout"]
 [connection signal="timeout" from="BatteryRechargeTimer" to="." method="_on_battery_recharge_timer_timeout"]
 [connection signal="timeout" from="PlayTime" to="." method="_on_play_time_timeout"]

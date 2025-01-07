@@ -31,8 +31,12 @@ func _physics_process(_delta: float) -> void:
 func stun(time):
 	$"../StunTime".wait_time = time
 	$"../StunTime".start()
+	$"../StunAudio".play()
 	is_stun = true
 		
+func setPathTimer(sec):
+	$Timer.wait_time = sec
+
 func makePath() -> void:
 	#if target == egg:
 		#if egg.broken:

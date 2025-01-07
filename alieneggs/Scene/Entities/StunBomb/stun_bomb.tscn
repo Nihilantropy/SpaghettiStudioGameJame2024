@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://b18186q66y82k"]
+[gd_scene load_steps=12 format=3 uid="uid://b18186q66y82k"]
 
 [ext_resource type="Texture2D" uid="uid://bh3213q03t2a2" path="res://Asset/Entities/Player/bomb.png" id="1_u0o16"]
-[ext_resource type="Script" path="res://Scene/Entities/Player/stun_bomb.gd" id="1_vpkky"]
+[ext_resource type="Script" path="res://Script/Entities/StunBomb/stun_bomb.gd" id="1_vpkky"]
+[ext_resource type="AudioStream" uid="uid://7jpsqaic0jtv" path="res://Asset/Audio/granata_stordente_no_alien.mp3" id="3_jdoln"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j20w7"]
 radius = 56.5685
@@ -78,5 +79,9 @@ sprite_frames = SubResource("SpriteFrames_s5f2m")
 animation = &"explosion"
 frame = 7
 frame_progress = 1.0
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jdoln")
+volume_db = -15.0
 
 [connection signal="animation_finished" from="Area/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

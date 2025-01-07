@@ -51,7 +51,7 @@ func calc_velocity(delta):
 	
 	movement.x = Input.get_axis("left_mov", "right_mov")
 	movement.y = Input.get_axis("up_mov", "down_mov")
-	movement.normalized()
+	#movement.normalized()
 	is_accelerating = max(abs(movement.x), abs(movement.y))
 	if (is_accelerating):
 		seconds_pressed += delta 

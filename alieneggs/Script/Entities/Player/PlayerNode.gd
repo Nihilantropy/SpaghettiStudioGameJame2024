@@ -4,7 +4,7 @@ extends Node2D
 var enemy = null
 var alien_node = null
 var terminal = null
-var bombPath = "res://Scene/Entities/Player/stun_bomb.tscn"
+var bombPath = "res://Scene/Entities/StunBomb/stun_bomb.tscn"
 
 func get_player():
 	return player
@@ -20,7 +20,6 @@ func use_bomb():
 	bombNode.set_position(player.position)
 	$Heartbeat.add_sibling(bombNode)
 	bombNode.start_animation()
-	bombNode.set_body_to_stun(enemy)
 
 func _on_sound_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):

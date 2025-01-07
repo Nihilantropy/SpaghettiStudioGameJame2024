@@ -15,7 +15,11 @@ var eggs_has_arised = false
 
 var font
 
+var elapsed_time = 0
+var last_notification = 0
+
 func _process(_delta: float) -> void:
+	elapsed_time += _delta
 	if GlobalVariables.is_mother_mode():
 		return
 	var text
@@ -28,7 +32,13 @@ func _process(_delta: float) -> void:
 		terminal_goal_text.add_theme_color_override("default_color", Color(1, 0, 0))
 		text = "The eggs has born, Run from the alien till the rescue arrives: "\
 		+ str(int(root_node.play_time.time_left))
-	update_goal_terminal(text)
+	update_goal_terminal(text, false)
+
+func notify():
+	if elapsed_time - last_notification <= 0.5:
+		return
+	$Notification.play()
+	last_notification = elapsed_time
 
 func setup_terminal() -> void:
 	font = FontFile.new()
@@ -57,21 +67,25 @@ func update_eggs_terminal(message: String) -> void:
 func update_enemy_terminal(message: String) -> void:
 	terminal_enemy_text.clear()
 	terminal_enemy_text.add_text(message)
+	notify()
 
 func update_supportItem_terminal(message: String) -> void:
 	terminal_supportItem_text.clear()
 	terminal_supportItem_text.add_text(message)
+	notify()
 
-func update_goal_terminal(message: String) -> void:
+func update_goal_terminal(message: String, notify = true) -> void:
 	terminal_goal_text.clear()
 	terminal_goal_text.add_text(message)
+	if notify:
+		notify()
 
 func show_goal():
 	var text
 	
 	terminal_goal_text.add_theme_color_override("default_color", Color(0, 1, 0))
 	text = "Find and destroy all the eggs:\n   Eggs Remaining: " + str(GlobalVariables.eggs_number)
-	update_goal_terminal(text)
+	update_goal_terminal(text, false)
 
 func show_info_standard():
 	var text
@@ -84,18 +98,20 @@ func update_egg() -> void:
 	show_goal()
 
 func display_lose_text():
+	pass
 	terminal_enemy_text.clear()
 	terminal_supportItem_text.clear()
 	terminal_goal_text.clear()
 	terminal_goal_text.add_theme_color_override("default_color", Color(1, 0, 0))
-	update_goal_terminal(" GAME OVER: The Alien Mother has killed you!")
+	update_goal_terminal(" GAME OVER: The Alien Mother has killed you!", false)
 
 func display_win_text():
+	pass
 	terminal_enemy_text.clear()
 	terminal_supportItem_text.clear()
 	terminal_goal_text.clear()
 	terminal_goal_text.add_theme_color_override("default_color", Color(0, 1, 0))
-	update_goal_terminal(" YOU WON: The rescue has arrived")
+	update_goal_terminal(" YOU WON: The rescue has arrived", false)
 
 func enemy_in_sound():
 	is_enemy_in_sound = true
@@ -146,3 +162,12 @@ func show_enemy_status_after_exit():
 		
 func eggs_arised():
 	eggs_has_arised = true
+	
+func update_bombs():
+	if GlobalVariables.stun_bombs == 2:
+		$HBoxContainer/Bomb3.hide()
+	if GlobalVariables.stun_bombs == 1:
+		$HBoxContainer/Bomb2.hide()
+	if GlobalVariables.stun_bombs == 0:
+		$HBoxContainer/Bomb1.hide()
+	
