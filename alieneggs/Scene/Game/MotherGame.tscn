@@ -11,28 +11,11 @@ script = ExtResource("1_7pass")
 autoplay = true
 
 [node name="MainUi" parent="." instance=ExtResource("2_50xde")]
-visible = false
-
-[node name="SpriteTimer" type="Timer" parent="."]
-wait_time = 1.4
-autostart = true
-
-[node name="WallTimer" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
-
-[node name="BatteryRechargeTimer" type="Timer" parent="."]
-wait_time = 5.0
-autostart = true
 
 [node name="BatteryShotSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_y83ev")
 
-[connection signal="battery_died" from="." to="MainUi/HBoxContainer/Terminal" method="_on_game_battery_died"]
-[connection signal="battery_recharge" from="." to="MainUi/HBoxContainer/Battery" method="_on_game_battery_recharge"]
-[connection signal="battery_recharge" from="." to="MainUi/HBoxContainer/Terminal" method="_on_game_battery_recharge"]
-[connection signal="battery_shot_used" from="." to="MainUi/HBoxContainer/Battery" method="_on_game_battery_shot_used"]
-[connection signal="battery_shot_used" from="." to="MainUi/HBoxContainer/Terminal" method="_on_game_battery_shot_used"]
-[connection signal="timeout" from="SpriteTimer" to="." method="_on_sprite_timer_timeout"]
-[connection signal="timeout" from="WallTimer" to="." method="_on_wall_timer_timeout"]
-[connection signal="timeout" from="BatteryRechargeTimer" to="." method="_on_battery_recharge_timer_timeout"]
+[node name="VisibilityTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="VisibilityTimer" to="." method="_on_visibility_timer_timeout"]

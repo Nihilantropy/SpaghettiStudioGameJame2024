@@ -13,7 +13,7 @@ func _ready() -> void:
 	for battery in battery_texture:
 			battery.hide()
 	# Show the current battery level texture
-	battery_texture[GlobalVariables.battery_shots].show()
+	battery_texture[6].show()
 
 func _on_game_battery_shot_used() -> void:
 	# Ensure the global variable exists and is valid

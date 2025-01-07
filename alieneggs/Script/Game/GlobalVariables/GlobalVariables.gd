@@ -7,7 +7,7 @@ var eggs_max_number
 
 var	eggs_number
 
-var	battery_shots = 6
+var	stun_bombs = 3
 
 var current_video: VideoStreamPlayer = null
 
@@ -17,7 +17,6 @@ var game_mode = MOTHERMODE
 
 func is_mother_mode() -> bool:
 	return game_mode == MOTHERMODE
-	
 
 func set_eggs_number(n):
 	eggs_max_number = n
@@ -30,4 +29,4 @@ func is_video_playing():
 
 func reset_globals():
 	eggs_number = eggs_max_number
-	battery_shots = 6
+	stun_bombs = 3

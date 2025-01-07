@@ -1,9 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://bsshix608k1uw"]
+[gd_scene load_steps=13 format=3 uid="uid://bsshix608k1uw"]
 
 [ext_resource type="Texture2D" uid="uid://cce3m0jbnnn7b" path="res://Asset/UI/Terminal/single_frame_no_wites_2.1.1.png" id="1_2sbbb"]
 [ext_resource type="Script" path="res://Script/UI/Terminal/Terminal.gd" id="1_mlnq5"]
 [ext_resource type="Shader" path="res://Script/UI/shader/Terminal.gdshader" id="2_hbo3u"]
 [ext_resource type="Texture2D" uid="uid://dptu1yy3cew82" path="res://Asset/UI/Terminal/TerminalFrame.png" id="4_xje0e"]
+[ext_resource type="Texture2D" uid="uid://8os4r8ut6vpd" path="res://Asset/Entities/StunBomb/bomb.png" id="5_3l4e0"]
+[ext_resource type="Texture2D" uid="uid://t67gjw8w1wgn" path="res://Asset/Entities/StunBomb/used_bomb.png" id="5_mcvik"]
+[ext_resource type="AudioStream" uid="uid://bjrgxknror3ed" path="res://Asset/Audio/notifica_terminale.mp3" id="7_sp4n1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4wwub"]
 shader = ExtResource("2_hbo3u")
@@ -29,6 +32,9 @@ cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 
 [sub_resource type="FontFile" id="FontFile_jmto5"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -36,6 +42,9 @@ cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 
 [sub_resource type="FontFile" id="FontFile_lcmmr"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -67,45 +76,46 @@ grow_vertical = 2
 texture = ExtResource("1_2sbbb")
 patch_margin_top = 100
 
-[node name="Goal" type="RichTextLabel" parent="Screen"]
-material = SubResource("ShaderMaterial_4wwub")
-layout_mode = 2
-offset_left = 8.0
-offset_top = 21.0
-offset_right = 425.0
-offset_bottom = 123.0
-theme_override_fonts/normal_font = SubResource("FontFile_7p2cy")
-theme_override_fonts/mono_font = SubResource("FontFile_ya7e8")
-theme_override_font_sizes/mono_font_size = 0
-bbcode_enabled = true
-scroll_following = true
-tab_size = 2
-
-[node name="Info" type="RichTextLabel" parent="Screen"]
-material = SubResource("ShaderMaterial_4wwub")
-layout_mode = 2
-offset_left = 10.0
-offset_top = 116.0
-offset_right = 423.0
-offset_bottom = 216.0
-grow_horizontal = 2
-theme_override_fonts/normal_font = SubResource("FontFile_7p2cy")
-theme_override_fonts/mono_font = SubResource("FontFile_ya7e8")
-theme_override_font_sizes/mono_font_size = 0
-bbcode_enabled = true
-scroll_following = true
-tab_size = 2
-
-[node name="Messages" type="RichTextLabel" parent="Screen"]
+[node name="VBox" type="VBoxContainer" parent="Screen"]
 layout_mode = 0
-offset_left = 11.0
-offset_top = 210.0
-offset_right = 427.0
-offset_bottom = 304.0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = 423.0
+offset_bottom = 369.0
+
+[node name="Goal" type="RichTextLabel" parent="Screen/VBox"]
+material = SubResource("ShaderMaterial_4wwub")
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_fonts/normal_font = SubResource("FontFile_7p2cy")
+theme_override_fonts/mono_font = SubResource("FontFile_ya7e8")
+theme_override_font_sizes/mono_font_size = 0
+bbcode_enabled = true
+scroll_following = true
+tab_size = 2
+
+[node name="SupportItem" type="RichTextLabel" parent="Screen/VBox"]
+material = SubResource("ShaderMaterial_4wwub")
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_fonts/normal_font = SubResource("FontFile_7p2cy")
+theme_override_fonts/mono_font = SubResource("FontFile_ya7e8")
+theme_override_font_sizes/mono_font_size = 0
+bbcode_enabled = true
+scroll_following = true
+tab_size = 2
+
+[node name="EnemyStatus" type="RichTextLabel" parent="Screen/VBox"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
 theme_override_fonts/normal_font = SubResource("FontFile_jmto5")
 theme_override_fonts/mono_font = SubResource("FontFile_lcmmr")
 theme_override_font_sizes/mono_font_size = 0
 tab_size = 2
+
+[node name="EggStatus" type="RichTextLabel" parent="Screen/VBox"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 1
@@ -120,3 +130,45 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_xje0e")
 metadata/_edit_lock_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 18.0
+offset_right = 455.0
+offset_bottom = 109.0
+scale = Vector2(1.5, 1.5)
+
+[node name="UsedBomb1" type="Sprite2D" parent="HBoxContainer"]
+position = Vector2(23, 60)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_mcvik")
+
+[node name="UsedBomb2" type="Sprite2D" parent="HBoxContainer"]
+position = Vector2(91, 60)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_mcvik")
+
+[node name="UsedBomb3" type="Sprite2D" parent="HBoxContainer"]
+position = Vector2(159, 60)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_mcvik")
+
+[node name="Bomb1" type="Sprite2D" parent="HBoxContainer"]
+position = Vector2(23, 60)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_3l4e0")
+
+[node name="Bomb2" type="Sprite2D" parent="HBoxContainer"]
+position = Vector2(91, 60)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_3l4e0")
+
+[node name="Bomb3" type="Sprite2D" parent="HBoxContainer"]
+position = Vector2(159, 60)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_3l4e0")
+
+[node name="Notification" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_sp4n1")
+volume_db = -6.282
