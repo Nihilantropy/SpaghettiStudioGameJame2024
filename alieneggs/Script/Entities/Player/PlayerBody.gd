@@ -3,8 +3,8 @@ extends CharacterBody2D
 @onready var noise_area_collision = $NoiseArea/CollisionShape
 
 const ACCEL_LIMIT = 500.0
-const ACCEL_FIXED = 0.4  # Velocità di crescita (regolabile)
-const DECEL_FIXED = 3  # Velocità di crescita (regolabile)
+const ACCEL_FIXED = 0.8  # Velocità di crescita (regolabile)
+const DECEL_FIXED = 2  # Velocità di crescita (regolabile)
 var seconds_pressed = 0
 var rng = RandomNumberGenerator.new()
 var movement = Vector2()

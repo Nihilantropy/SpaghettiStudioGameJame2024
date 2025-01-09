@@ -74,10 +74,10 @@ func update_supportItem_terminal(message: String) -> void:
 	terminal_supportItem_text.add_text(message)
 	notify()
 
-func update_goal_terminal(message: String, notify = true) -> void:
+func update_goal_terminal(message: String, to_notify = true) -> void:
 	terminal_goal_text.clear()
 	terminal_goal_text.add_text(message)
-	if notify:
+	if to_notify:
 		notify()
 
 func show_goal():
