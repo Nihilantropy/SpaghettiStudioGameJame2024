@@ -13,6 +13,7 @@ offset_right = -739.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jmjkj")
+wait_time = 0.3
 
 [node name="Control" parent="." instance=ExtResource("1_5602q")]
 layout_mode = 1
@@ -25,7 +26,7 @@ scale = Vector2(0.7, 0.7)
 texture = ExtResource("2_8v6x7")
 
 [node name="SonarStartTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
 autostart = true
 

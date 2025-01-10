@@ -20,7 +20,7 @@ vec2 random2(vec2 st){
 float noise(vec2 st) {
     vec2 i = floor(st);
     vec2 f = fract(st);
-    
+
     vec2 u = f*f*(3.0-2.0*f);
 
     return mix( mix( dot( random2(i + vec2(0.0,0.0) ), f - vec2(0.0,0.0) ),
@@ -34,7 +34,7 @@ float fbm(vec2 st) {
     float value = 0.0;
     float amplitude = 0.5;
     float frequency = 1.0;
-    
+
     // Add multiple layers of noise
     for(int i = 0; i < 5; i++) {
         value += amplitude * noise(st * frequency);
@@ -51,14 +51,14 @@ void fragment() {
     movement += vec2(0.0, -1.0) * direction.y;
     movement += vec2(-1.0, 0.0) * direction.z;
     movement += vec2(1.0, 0.0) * direction.w;
-    
+
     // Add movement over time
     uv += movement * TIME * velocity;
-    
+
     // Generate smooth fog pattern
     float noise_value = fbm(uv * granularity);
     noise_value = smoothstep(0.0, 1.0, noise_value * 0.5 + 0.5);
-    
+
     float alpha = noise_value * intensity * fog_color.a;
     COLOR = vec4(fog_color.rgb, alpha);
 }
