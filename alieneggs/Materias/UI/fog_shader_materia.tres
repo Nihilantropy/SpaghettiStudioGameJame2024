@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b42h8yvumlcok"]
+
+[ext_resource type="Shader" path="res://Script/UI/shader/fog_shader_materia.gdshader" id="1_pr02i"]
+
+[resource]
+shader = ExtResource("1_pr02i")
+shader_parameter/intensity = 0.3
+shader_parameter/velocity = 0.4
+shader_parameter/fog_color = Color(0.8, 0.8, 0.8, 0.4)
+shader_parameter/direction = Vector4(0, 0, 0.1, 0)
+shader_parameter/granularity = 10.0
