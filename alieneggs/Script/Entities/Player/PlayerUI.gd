@@ -25,4 +25,4 @@ func hide_loading():
 	$LoadingImage.hide()
 
 func _on_sonar_fire():
-	emit_signal("sonar_fire")
+	sonar_fire.emit()

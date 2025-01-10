@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://byibekw73sx8c"]
+[gd_scene load_steps=3 format=3 uid="uid://byibekw73sx8c"]
 
 [ext_resource type="Script" path="res://Script/Game/mother_game.gd" id="1_7pass"]
 [ext_resource type="PackedScene" uid="uid://bbqbnh0v1wgrq" path="res://Scene/UI/MainUI.tscn" id="2_50xde"]
-[ext_resource type="AudioStream" uid="uid://byuxmh6hsp3k6" path="res://Asset/Audio/radarBoost.mp3" id="3_y83ev"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_7pass")
@@ -11,9 +10,6 @@ script = ExtResource("1_7pass")
 autoplay = true
 
 [node name="MainUi" parent="." instance=ExtResource("2_50xde")]
-
-[node name="BatteryShotSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_y83ev")
 
 [node name="VisibilityTimer" type="Timer" parent="."]
 one_shot = true

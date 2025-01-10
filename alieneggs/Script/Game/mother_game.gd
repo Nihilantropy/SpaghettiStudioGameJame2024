@@ -15,7 +15,7 @@ var eggs_hatched = false
 
 var show_entities: bool = false
 
-var show_all = true
+var show_all = false
 var is_ready = false
 
 @onready var visibility_timer = $VisibilityTimer

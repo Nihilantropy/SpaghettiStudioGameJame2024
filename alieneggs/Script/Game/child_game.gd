@@ -10,34 +10,16 @@ var map
 
 @onready var main_ui = $MainUi
 @onready var visibility_timer = $VisibilityTimer
-@onready var radar_timer = $RadarTimer
+@onready var radar_timer = $RadarTimer  # Timer for regular radar pulses
 @onready var play_time = $PlayTime
-var	visibility_duration = 0.8  # Duration for which sprites stay visible
+
+var visibility_duration = 0.8  # Duration for which sprites stay visible
 var eggs_hatched = false
-
 var show_entities: bool = true
-
 var show_all = false
 var is_ready = false
 
-var resource
-
 func _init() -> void:
-	#ResourceLoader.load_threaded_request(GlobalVariables.level)
-	#var progress = [0]
-	#var status = ResourceLoader.load_threaded_get_status(GlobalVariables.level, progress)
-	#while true:
-		#if status == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
-			#status = ResourceLoader.load_threaded_get_status(GlobalVariables.level, progress)
-		#elif status == ResourceLoader.THREAD_LOAD_LOADED:
-			#resource = ResourceLoader.load_threaded_get(GlobalVariables.level)
-			#break
-		#else:
-			#print(status)
-			#push_error("Error loading scene")
-			#get_tree().quit()
-	#print("finished")
-	#level = resource.instantiate()
 	level = load(GlobalVariables.level).instantiate()
 	
 func _ready() -> void:
@@ -48,6 +30,9 @@ func _ready() -> void:
 	main_ui.terminal.root_node = self
 	play_time.wait_time = 12
 	play_time.start()
+	
+	# Start the regular radar pulse timer
+	radar_timer.start()
 	
 func setup_entities():
 	player_node = level.get_player_node()
@@ -129,6 +114,7 @@ func _on_visibility_timer_timeout() -> void:
 			if !egg.broken:
 				egg.hide()
 
+# Regular radar pulse
 func _on_radar_timer_timeout() -> void:
 	start_visibility_timer()
 

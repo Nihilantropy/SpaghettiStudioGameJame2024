@@ -14,9 +14,19 @@ var is_enemy_in_noise = false
 var eggs_has_arised = false
 
 var font
-
+var font_size = 30  # Default font size
 var elapsed_time = 0
 var last_notification = 0
+
+# Add method to change font size
+func set_font_size(new_size: int) -> void:
+	font_size = new_size
+	font.fixed_size = font_size
+	# Reapply font to all terminal elements
+	setup_terminal_text(terminal_eggs_text)
+	setup_terminal_text(terminal_enemy_text)
+	setup_terminal_text(terminal_supportItem_text)
+	setup_terminal_text(terminal_goal_text)
 
 func _process(_delta: float) -> void:
 	elapsed_time += _delta
@@ -42,7 +52,7 @@ func notify():
 
 func setup_terminal() -> void:
 	font = FontFile.new()
-	font.fixed_size = 14
+	font.fixed_size = font_size
 	font.font_data = load("res://Script/UI/Terminal/Font/Courier MonoThai Regular.ttf")
 	
 	setup_terminal_text(terminal_eggs_text)
@@ -98,7 +108,6 @@ func update_egg() -> void:
 	show_goal()
 
 func display_lose_text():
-	pass
 	terminal_enemy_text.clear()
 	terminal_supportItem_text.clear()
 	terminal_goal_text.clear()
@@ -106,7 +115,6 @@ func display_lose_text():
 	update_goal_terminal(" GAME OVER: The Alien Mother has killed you!", false)
 
 func display_win_text():
-	pass
 	terminal_enemy_text.clear()
 	terminal_supportItem_text.clear()
 	terminal_goal_text.clear()
@@ -170,4 +178,3 @@ func update_bombs():
 		$HBoxContainer/Bomb2.hide()
 	if GlobalVariables.stun_bombs == 0:
 		$HBoxContainer/Bomb1.hide()
-	

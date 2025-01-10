@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmwyendyadg5a"]
+[gd_scene load_steps=3 format=3 uid="uid://bmwyendyadg5a"]
 
 [ext_resource type="Script" path="res://Script/Game/child_game.gd" id="1_7c76o"]
 [ext_resource type="PackedScene" uid="uid://bbqbnh0v1wgrq" path="res://Scene/UI/MainUI.tscn" id="2_k5u4l"]
-[ext_resource type="AudioStream" uid="uid://byuxmh6hsp3k6" path="res://Asset/Audio/radarBoost.mp3" id="3_hhy4p"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_7c76o")
@@ -11,7 +10,6 @@ script = ExtResource("1_7c76o")
 autoplay = true
 
 [node name="MainUi" parent="." instance=ExtResource("2_k5u4l")]
-visible = false
 
 [node name="RadarTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -19,13 +17,6 @@ autostart = true
 
 [node name="VisibilityTimer" type="Timer" parent="."]
 one_shot = true
-
-[node name="BatteryRechargeTimer" type="Timer" parent="."]
-wait_time = 5.0
-autostart = true
-
-[node name="BatteryShotSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_hhy4p")
 
 [node name="PlayTime" type="Timer" parent="."]
 
@@ -36,5 +27,4 @@ zoom = Vector2(0.1, 0.1)
 
 [connection signal="timeout" from="RadarTimer" to="." method="_on_radar_timer_timeout"]
 [connection signal="timeout" from="VisibilityTimer" to="." method="_on_wall_timer_timeout"]
-[connection signal="timeout" from="BatteryRechargeTimer" to="." method="_on_battery_recharge_timer_timeout"]
 [connection signal="timeout" from="PlayTime" to="." method="_on_play_time_timeout"]
