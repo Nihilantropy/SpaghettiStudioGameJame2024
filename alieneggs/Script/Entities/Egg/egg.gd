@@ -10,7 +10,7 @@ var new_born = null
 
 signal egg_broken
 
-func hatch():
+func hatch(totalEggs):
 	if broken:
 		return
 	get_broke()
@@ -18,6 +18,7 @@ func hatch():
 	$Egg.hide()
 	new_born = preload("res://Scene/Entities/Enemy/alien.tscn").instantiate()
 	add_child(new_born)
+	new_born.get_alien().setPathTimer(0.1 * totalEggs)
 	root_node.add_alien(new_born)
 
 func set_root(node):

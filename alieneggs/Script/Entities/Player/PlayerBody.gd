@@ -3,8 +3,8 @@ extends CharacterBody2D
 @onready var noise_area_collision = $NoiseArea/CollisionShape
 
 const ACCEL_LIMIT = 500.0
-const ACCEL_FIXED = 0.4  # Velocità di crescita (regolabile)
-const DECEL_FIXED = 3  # Velocità di crescita (regolabile)
+const ACCEL_FIXED = 0.8  # Velocità di crescita (regolabile)
+const DECEL_FIXED = 2  # Velocità di crescita (regolabile)
 var seconds_pressed = 0
 var rng = RandomNumberGenerator.new()
 var movement = Vector2()
@@ -49,9 +49,9 @@ func set_current_walk():
 func calc_velocity(delta):
 	var is_accelerating = 0
 	
-	movement.x = Input.get_axis("ui_left", "ui_right")
-	movement.y = Input.get_axis("ui_up", "ui_down")
-	movement.normalized()
+	movement.x = Input.get_axis("left_mov", "right_mov")
+	movement.y = Input.get_axis("up_mov", "down_mov")
+	#movement.normalized()
 	is_accelerating = max(abs(movement.x), abs(movement.y))
 	if (is_accelerating):
 		seconds_pressed += delta 

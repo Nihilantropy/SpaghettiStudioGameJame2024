@@ -11,7 +11,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_edah0"]
 shader = ExtResource("3_46xdf")
-shader_parameter/background_color = Color(0.126238, 0.112482, 0.137156, 1)
+shader_parameter/background_color = Color(0.263403, 0.258754, 0.321874, 1)
 shader_parameter/circle_color = Color(0, 0, 0, 0)
 shader_parameter/circle_radius = 0.1
 shader_parameter/circle_position = Vector2(0.36, 0.5)
@@ -24,6 +24,10 @@ z_index = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = -59.0
+offset_right = -6.0
+offset_bottom = -59.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -46,29 +50,32 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.2
 
 [node name="Control" parent="HBoxContainer/Radar" index="0"]
-offset_left = 48.0
-offset_top = 109.0
-offset_right = 48.0
-offset_bottom = 109.0
+offset_left = 5.0
+offset_top = 20.0
+offset_right = 5.0
+offset_bottom = 20.0
+scale = Vector2(1.3, 1.3)
 
 [node name="Sprite2D" parent="HBoxContainer/Radar" index="1"]
-position = Vector2(197, 398)
+position = Vector2(200, 395)
+scale = Vector2(0.9, 0.9)
 
 [node name="Terminal" parent="HBoxContainer" instance=ExtResource("4_wxdrp")]
 layout_mode = 2
-size_flags_stretch_ratio = 1.86
+size_flags_stretch_ratio = 1.46
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_edah0")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -53.0
-offset_top = -191.0
-offset_right = -8.0
-offset_bottom = 358.0
+offset_left = -164.0
+offset_top = -432.0
+offset_right = -119.0
+offset_bottom = 117.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.3, 1.3)
 color = Color(0, 0.324977, 0.510337, 1)
 
 [node name="VideoManager" parent="." instance=ExtResource("7_3r566")]

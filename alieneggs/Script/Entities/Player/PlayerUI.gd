@@ -18,8 +18,11 @@ func _ready() -> void:
 	radar.connect("sonar_fire", Callable(self, "_on_sonar_fire"))
 	$PauseMenu.radarShader = $HBoxContainer/Radar/Control
 	
+func update_bombs():
+	terminal.update_bombs()
+	
 func hide_loading():
 	$LoadingImage.hide()
-	
+
 func _on_sonar_fire():
 	emit_signal("sonar_fire")

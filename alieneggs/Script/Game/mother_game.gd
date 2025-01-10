@@ -10,12 +10,12 @@ var map
 var main_ui
 var sprite_timer
 var wall_timer
-var	visibility_duration = 0.8
+var visibility_duration = 0.8
 var eggs_hatched = false
 
-var show_entities: bool = true
+var show_entities: bool = false
 
-var show_all = false
+var show_all = true
 var is_ready = false
 
 @onready var visibility_timer = $VisibilityTimer
@@ -53,6 +53,7 @@ func setup_entities():
 	player_node = level.get_player_node()
 	player = player_node.get_player()
 	alien_node = level.get_alien_node()
+	alien_node.get_alien().setPathTimer(0.1)
 	eggs = level.get_egg_nodes()
 	map = level.get_map()
 	main_ui = $MainUi
@@ -70,8 +71,11 @@ func _process(_delta: float) -> void:
 		push_error("player not found")
 		
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_stoon_bomb"):
-		print("Stoon bomb!")
+	if event.is_action_pressed("stun_bomb"):
+		if GlobalVariables.stun_bombs > 0:
+			GlobalVariables.stun_bombs -= 1
+			player_node.use_bomb()
+			main_ui.update_bombs()
 		
 func start_visibility_timer():
 	if show_all:
@@ -115,6 +119,7 @@ func handle_lose():
 func _on_lose_video_finished() -> void:
 	$MainUi/HBoxContainer/Terminal.display_lose_text()
 	$MainUi/HBoxContainer/Terminal.show()
+	$MainUi/HBoxContainer/Radar.show()
 	$MainUi/HBoxContainer/NoiseLevel.show()
 	$MainUi/PauseMenu.show()
 	$MainUi/PauseMenu/MarginContainer/VBoxContainer/Resume.disabled = 1
@@ -122,6 +127,7 @@ func _on_lose_video_finished() -> void:
 func _on_win_video_finished() -> void:
 	$MainUi/HBoxContainer/Terminal.display_win_text()
 	$MainUi/HBoxContainer/Terminal.show()
+	$MainUi/HBoxContainer/Radar.show()
 	$MainUi/HBoxContainer/NoiseLevel.show()
 	$MainUi/PauseMenu.show()
 	$MainUi/PauseMenu/MarginContainer/VBoxContainer/Resume.disabled = 1

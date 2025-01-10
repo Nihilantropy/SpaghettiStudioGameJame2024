@@ -12,7 +12,7 @@ var material_assigned = false
 func _ready() -> void:
 	color_rect.hide()
 
-func _process(delta):
+func _process(_delta):
 	if material_assigned:
 		# Update the shader's time uniform using Time singleton
 		var current_time = Time.get_ticks_msec() / 1000.0  # Convert milliseconds to seconds
@@ -28,7 +28,6 @@ func _process(delta):
 			emit_signal("sonar_fire")
 		
 		last_mod_time = mod_time
-
 
 func _on_sonar_start_timer_timeout() -> void:
 	# Assign the material to the ColorRect when the timer finishes

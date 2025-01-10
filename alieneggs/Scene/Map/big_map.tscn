@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://c3fasypaidii5" path="res://Asset/Map/mapTiles.png" id="1_y2pka"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_vncre"]
-vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xds47"]
+vertices = PackedVector2Array(8, -8, 16, -8, 16, 8, 8, 8, 8, 16, -8, 16, -8, 8, -8, -8, -16, 8, -16, -8, 8, -16, -8, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 4, 5, 6), PackedInt32Array(0, 3, 6, 7), PackedInt32Array(6, 8, 9, 7), PackedInt32Array(10, 0, 7, 11)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(8, -16, 8, -8, 16, -8, 16, 8, 8, 8, 8, 16, -8, 16, -8, 8, -16, 8, -16, -8, -8, -8, -8, -16)])
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_thjit"]
@@ -14,7 +14,7 @@ texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 1:0/0 = 0
-1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_vncre")
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_xds47")
 
 [sub_resource type="TileSet" id="TileSet_g2w14"]
 tile_size = Vector2i(32, 32)
