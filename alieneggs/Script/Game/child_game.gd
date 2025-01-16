@@ -23,21 +23,6 @@ var is_ready = false
 var resource
 
 func _init() -> void:
-	#ResourceLoader.load_threaded_request(GlobalVariables.level)
-	#var progress = [0]
-	#var status = ResourceLoader.load_threaded_get_status(GlobalVariables.level, progress)
-	#while true:
-		#if status == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
-			#status = ResourceLoader.load_threaded_get_status(GlobalVariables.level, progress)
-		#elif status == ResourceLoader.THREAD_LOAD_LOADED:
-			#resource = ResourceLoader.load_threaded_get(GlobalVariables.level)
-			#break
-		#else:
-			#print(status)
-			#push_error("Error loading scene")
-			#get_tree().quit()
-	#print("finished")
-	#level = resource.instantiate()
 	level = load(GlobalVariables.level).instantiate()
 	
 func _ready() -> void:
