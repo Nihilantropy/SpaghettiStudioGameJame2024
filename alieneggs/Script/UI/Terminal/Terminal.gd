@@ -137,13 +137,13 @@ func enemy_out_sound():
 func enemy_in_radar():
 	is_enemy_in_radar = true
 	terminal_enemy_text.add_theme_color_override("default_color", Color(1, 0, 0))
-	var text = "RUN the enemy is sniffing and coming to you"
+	var text = "RUN THE ENEMY KNOWS YOUR POSITION"
 	update_enemy_terminal(text)
 	
 func enemy_out_radar():
 	is_enemy_in_radar = false
 	terminal_enemy_text.add_theme_color_override("default_color", Color(0, 1, 0))
-	var text = "The enemy can't smell you anymore"
+	var text = "The enemy can't detect you anymore"
 	update_enemy_terminal(text)
 	show_enemy_status_after_exit()
 	
@@ -161,10 +161,10 @@ func enemy_out_noise():
 	show_enemy_status_after_exit()
 
 func show_enemy_status_after_exit():
-	if is_enemy_in_noise:
-		enemy_in_noise()
 	if is_enemy_in_radar:
 		enemy_in_radar()
+	if is_enemy_in_noise:
+		enemy_in_noise()
 	if is_enemy_in_sound:
 		enemy_in_sound()
 		

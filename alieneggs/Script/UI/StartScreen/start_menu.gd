@@ -16,7 +16,7 @@ func _on_level_1_pressed() -> void:
 
 func _on_level_2_pressed() -> void:
 	hide()
-	GlobalVariables.level = "res://Scene/Game/Level1.tscn"
+	GlobalVariables.level = "res://Scene/Game/Level2.tscn"
 	GlobalVariables.game_mode = GlobalVariables.CHILDMODE
 	get_tree().paused = 1
 	$"../VideoManager".config_and_play(load("res://Asset/Video/video_intro.ogv"), _on_intro_video_finished)

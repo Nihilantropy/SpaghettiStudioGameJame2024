@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://devhueg71axgy"]
+
+[ext_resource type="Script" path="res://Script/Game/level_1.gd" id="1_o1nyd"]
+[ext_resource type="PackedScene" uid="uid://wfqmk3olk2p4" path="res://Scene/Map/background.tscn" id="2_xx0ld"]
+[ext_resource type="PackedScene" uid="uid://b4opvimmyttuf" path="res://Scene/Map/big_map.tscn" id="3_wx07q"]
+[ext_resource type="PackedScene" uid="uid://cw5vfmwtm82ef" path="res://Scene/Entities/Player/Player.tscn" id="4_w8nqj"]
+[ext_resource type="PackedScene" uid="uid://wxokwdu11m7g" path="res://Scene/Entities/Enemy/alien.tscn" id="5_sg4tp"]
+[ext_resource type="PackedScene" uid="uid://4bttjwuvo0ml" path="res://Scene/Entities/Egg/egg.tscn" id="6_vg72l"]
+
+[node name="Level2" type="Node2D"]
+script = ExtResource("1_o1nyd")
+
+[node name="Background" parent="." instance=ExtResource("2_xx0ld")]
+
+[node name="Map" parent="." instance=ExtResource("3_wx07q")]
+
+[node name="PlayerNode" parent="." instance=ExtResource("4_w8nqj")]
+position = Vector2(1823, 1804)
+
+[node name="AlienNode" parent="." instance=ExtResource("5_sg4tp")]
+position = Vector2(742, -1887)
+
+[node name="EggNode" parent="." instance=ExtResource("6_vg72l")]
+position = Vector2(-1268, -1935)
+
+[node name="EggNode2" parent="." instance=ExtResource("6_vg72l")]
+position = Vector2(-1690, 1810)
+
+[node name="EggNode3" parent="." instance=ExtResource("6_vg72l")]
+position = Vector2(-20, -731)
+
+[node name="EggNode4" parent="." instance=ExtResource("6_vg72l")]
+position = Vector2(1357, 1319)
+
+[editable path="PlayerNode"]
