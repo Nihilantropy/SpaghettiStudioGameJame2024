@@ -31,7 +31,7 @@ func _ready() -> void:
 	GlobalVariables.set_eggs_number(eggs.size())
 	main_ui.terminal.setup_terminal()
 	main_ui.terminal.root_node = self
-	play_time.wait_time = 12
+	play_time.wait_time = 100
 	play_time.start()
 	
 func setup_entities():
