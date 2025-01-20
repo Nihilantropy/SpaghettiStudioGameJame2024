@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 @onready var noise_area_collision = $NoiseArea/CollisionShape
 
-const ACCEL_LIMIT = 500.0
-const ACCEL_FIXED = 0.8  # Velocità di crescita (regolabile)
-const DECEL_FIXED = 2  # Velocità di crescita (regolabile)
+const ACCEL_LIMIT = 700.0
+const ACCEL_FIXED = 3  # Velocità di crescita (regolabile)
+const DECEL_FIXED = 1.5  # Velocità di crescita (regolabile)
 var seconds_pressed = 0
 var rng = RandomNumberGenerator.new()
 var movement = Vector2()
@@ -82,7 +82,7 @@ func update_noise():
 
 func update_noise_area():
 	#2000px max, 100px min
-	var min_area = 100
+	var min_area = 20
 	noise_area_collision.shape.radius = min_area + get_noise_area_increm()
 
 func get_volume_percentage():
