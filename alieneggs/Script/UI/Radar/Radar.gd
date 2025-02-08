@@ -10,6 +10,7 @@ extends Control
 @onready var color_rect2 = $Control/ColorRect/ColorRect2
 @onready var color_rect3 = $Control/ColorRect/ColorRect2/ColorRect3
 
+var game_mode = null
 signal sonar_fire
 
 var shader_mat: ShaderMaterial
@@ -19,6 +20,10 @@ var last_animation_cycle := -1.0
 func _ready() -> void:
 	color_rect.hide()
 	_setup_shader()
+	
+func set_game_mode(mode):
+	game_mode = mode
+	sonar_fire.connect(game_mode._on_sonar_fire)
 
 func _setup_shader() -> void:
 	shader_mat = ShaderMaterial.new()

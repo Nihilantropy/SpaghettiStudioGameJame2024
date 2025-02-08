@@ -3,9 +3,9 @@ extends CharacterBody2D
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 @onready var alien_node = $".."
 
-const SLOW_SPEED = 15
-const NORMAL_SPEED = 70
-const MAX_SPEED = 500
+var SLOW_SPEED = 15
+var NORMAL_SPEED = 70
+var MAX_SPEED = 500
 
 var rng = RandomNumberGenerator.new()
 var speed = NORMAL_SPEED
@@ -20,6 +20,10 @@ func start():
 	change_target(0)
 	for each in eggs:
 		each.alien = self
+	if (!GlobalVariables.is_mother_mode()):
+		SLOW_SPEED = 160
+		NORMAL_SPEED = 170
+		MAX_SPEED = 800
 
 func _physics_process(_delta: float) -> void:
 		if is_stun:

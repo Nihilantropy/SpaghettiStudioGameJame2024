@@ -1,7 +1,5 @@
 extends Node
 
-signal sonar_fire
-
 @onready var player = get_parent()
 @onready var noise_level = $HBoxContainer/NoiseLevel
 @onready var terminal = $HBoxContainer/Terminal
@@ -23,6 +21,3 @@ func update_bombs():
 	
 func hide_loading():
 	$LoadingImage.hide()
-
-func _on_sonar_fire():
-	sonar_fire.emit()

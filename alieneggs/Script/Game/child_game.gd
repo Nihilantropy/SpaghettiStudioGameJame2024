@@ -10,14 +10,17 @@ var map
 
 @onready var main_ui = $MainUi
 @onready var visibility_timer = $VisibilityTimer
-@onready var radar_timer = $RadarTimer  # Timer for regular radar pulses
+@onready var radar_timer = $RadarTimer
 @onready var play_time = $PlayTime
-
-var visibility_duration = 0.8  # Duration for which sprites stay visible
+var	visibility_duration = 0.8  # Duration for which sprites stay visible
 var eggs_hatched = false
-var show_entities: bool = true
+
+var show_entities: bool = false
+
 var show_all = false
 var is_ready = false
+
+var resource
 
 func _init() -> void:
 	level = load(GlobalVariables.level).instantiate()
@@ -28,11 +31,8 @@ func _ready() -> void:
 	GlobalVariables.set_eggs_number(eggs.size())
 	main_ui.terminal.setup_terminal()
 	main_ui.terminal.root_node = self
-	play_time.wait_time = 12
+	play_time.wait_time = 60
 	play_time.start()
-	
-	# Start the regular radar pulse timer
-	radar_timer.start()
 	
 func setup_entities():
 	player_node = level.get_player_node()
@@ -40,6 +40,7 @@ func setup_entities():
 	alien_mother_node = level.get_alien_node()
 	eggs = level.get_egg_nodes()
 	map = level.get_map()
+	main_ui.radar.set_game_mode(self)
 	
 	if alien_mother_node:
 		alien_mother_node.queue_free()
@@ -50,7 +51,7 @@ func setup_entities():
 	if show_all:
 		main_ui.hide_ui()
 	else:
-		main_ui.show()
+		map.hide()
 		
 func _process(_delta: float) -> void:
 	if !is_ready:
@@ -84,7 +85,13 @@ func _input(event: InputEvent) -> void:
 			GlobalVariables.stun_bombs -= 1
 			player_node.use_bomb()
 			main_ui.update_bombs()
-		
+
+func _on_sonar_fire():
+	var wait_time = 0.3  # Replace with your desired wait time in seconds
+	
+	await get_tree().create_timer(wait_time).timeout  # Wait for x seconds
+	start_visibility_timer()  # Call the function after the delay
+	
 func start_visibility_timer():
 	if show_all:
 		return
@@ -114,7 +121,6 @@ func _on_visibility_timer_timeout() -> void:
 			if !egg.broken:
 				egg.hide()
 
-# Regular radar pulse
 func _on_radar_timer_timeout() -> void:
 	start_visibility_timer()
 

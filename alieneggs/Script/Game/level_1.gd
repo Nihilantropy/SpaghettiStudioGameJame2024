@@ -21,5 +21,7 @@ func get_egg_nodes() -> Array:
 	var egg_nodes = []
 	for child in get_children():
 		if child.name.begins_with("EggNode"):
+			if (!child.visible):
+				continue
 			egg_nodes.append(child)
 	return egg_nodes
