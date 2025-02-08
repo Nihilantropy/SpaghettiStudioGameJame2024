@@ -23,6 +23,7 @@ offset_bottom = 336.0
 scale = Vector2(1.5, 1.5)
 
 [node name="ColorRect2" type="ColorRect" parent="ColorRect"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -37,6 +38,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect3" type="ColorRect" parent="ColorRect/ColorRect2"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

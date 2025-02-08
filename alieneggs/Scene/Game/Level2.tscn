@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://devhueg71axgy"]
+
+[ext_resource type="Script" path="res://Script/Game/level_1.gd" id="1_o1nyd"]
+[ext_resource type="PackedScene" uid="uid://wfqmk3olk2p4" path="res://Scene/Map/background.tscn" id="2_xx0ld"]
+[ext_resource type="PackedScene" uid="uid://djpe678vcudtx" path="res://Scene/Map/medium_map.tscn" id="3_f1gss"]
+[ext_resource type="PackedScene" uid="uid://cw5vfmwtm82ef" path="res://Scene/Entities/Player/Player.tscn" id="4_w8nqj"]
+[ext_resource type="PackedScene" uid="uid://wxokwdu11m7g" path="res://Scene/Entities/Enemy/alien.tscn" id="5_sg4tp"]
+[ext_resource type="PackedScene" uid="uid://4bttjwuvo0ml" path="res://Scene/Entities/Egg/egg.tscn" id="6_vg72l"]
+[ext_resource type="AudioStream" uid="uid://dngautfcrywdq" path="res://Asset/Audio/Ambient_loop.mp3" id="7_4ehk7"]
+
+[node name="Level2" type="Node2D"]
+script = ExtResource("1_o1nyd")
+
+[node name="Background" parent="." instance=ExtResource("2_xx0ld")]
+position = Vector2(-74, -85)
+
+[node name="Map" parent="." instance=ExtResource("3_f1gss")]
+
+[node name="PlayerNode" parent="." instance=ExtResource("4_w8nqj")]
+position = Vector2(44, 160)
+metadata/_edit_group_ = true
+
+[node name="AlienNode" parent="." instance=ExtResource("5_sg4tp")]
+position = Vector2(280, -370)
+
+[node name="EggNode" parent="." instance=ExtResource("6_vg72l")]
+position = Vector2(-1346, -431)
+
+[node name="EggNode2" parent="." instance=ExtResource("6_vg72l")]
+position = Vector2(-911, 503)
+
+[node name="EggNode3" parent="." instance=ExtResource("6_vg72l")]
+position = Vector2(984, -328)
+
+[node name="EggNode4" parent="." instance=ExtResource("6_vg72l")]
+position = Vector2(1315, 881)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_4ehk7")
+volume_db = -5.0
+autoplay = true
+parameters/looping = false

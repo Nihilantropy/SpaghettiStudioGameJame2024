@@ -42,7 +42,6 @@ func _ready() -> void:
 		map.hide()
 	player_node.set_enemy(alien_node.get_alien())
 	player_node.set_alien_node(alien_node)
-	main_ui.connect("sonar_fire", Callable(self, "_on_sonar_fire"))
 
 func _on_sonar_fire():
 	var wait_time = 0.3  # Replace with your desired wait time in seconds
@@ -57,6 +56,7 @@ func setup_entities():
 	eggs = level.get_egg_nodes()
 	map = level.get_map()
 	main_ui = $MainUi
+	main_ui.radar.set_game_mode(self)
 	
 	player_node.terminal = main_ui.terminal
 	
